@@ -1,13 +1,14 @@
 <template>
   <div id="content">
     <div class="con">
-      <div class="shlogo"></div>
+      <div @click="Request" class="shlogo"></div>
       <div class="sou">
         <form @submit.prevent="submit(q)">
           <!--          <div class="lg" :class="isGoogle? 'googleSearch':'baiduSearch'" @click="changed"></div>-->
           <div class="lg" @click="changed" :style="{'background': `url(${searchLogo})no-repeat center/cover`}"></div>
           <!--input class="t" type="text" value="" name="t" hidden-->
-          <input class="wd" type="text" @input="inputFun" placeholder="←点击图标切换搜索引擎" v-model="q"
+          <input class="wd" :class="{'hasText':hasInputText}" type="text" @input="inputFun" placeholder="←点击图标切换搜索引擎"
+                 v-model="q"
                  x-webkit-speech lang="zh-CN" @keydown="selectDown($event)"
                  autocomplete="off">
           <img src="../../public/static/search.svg"/>
@@ -31,8 +32,9 @@
 <script>
 import googleLogo from "@/assets/images/g.svg"
 import baiduLogo from "@/assets/images/baidu.svg"
-import {getJsonp} from "@/api";
-import {event} from "@/utils"
+import {$post, getJsonp} from "@/api";
+import {event, setCookie} from "@/utils"
+import config from "@/api/config";
 
 export default {
 
@@ -44,6 +46,7 @@ export default {
       originalContent: "",
       suggestion: [],
       showSuggestion: false,
+      hasInputText: false,
       selectSuggestion: -1
     }
   },
@@ -51,8 +54,10 @@ export default {
     msg: String
   }, mounted: function () {
     event.$on("mainPageClick", (val) => {//监听aevent事件
-      if (val)
+      if (val) {
         this.showSuggestion = false
+        this.hasInputText = false
+      }
     })
   }, methods: {
     changed() {
@@ -62,6 +67,7 @@ export default {
         window.open("https://www.google.com/search?q=" + content, '_blank');
         this.q = ""
         this.suggestion = []
+        this.hasInputText = false
         this.showSuggestion = false
       }
 
@@ -70,6 +76,7 @@ export default {
       let inputValue = e.target.value;
       this.originalContent = inputValue
       if (inputValue) {
+        this.hasInputText = true
         // 使用
         getJsonp("https://suggestion.baidu.com/su?", {
           wd: inputValue,
@@ -86,9 +93,28 @@ export default {
         }).catch(error => {
           console.log(error)
         })
-      } else
+      } else {
         this.showSuggestion = false
+        this.hasInputText = false
+      }
 
+    }, Request() {
+      $post(config.login, {
+        username: "violet",
+        password: "12456"
+      }).then(res => {
+
+        if (res["code"] === 200) {
+          console.log("success")
+          console.log(res)
+          setCookie("token", res.data["token"])
+          setCookie("name", res.data["name"])
+        } else console.log("fail")
+
+      }).catch(e => {
+        console.log(e)
+        console.log("12324")
+      })
     },
     selectDown(e) {
       if (this.showSuggestion) {
@@ -155,6 +181,12 @@ li {
     vertical-align: middle;
     height: 18px;
   }
+}
+
+.hasText {
+  background: #fff;
+  box-shadow: 0 0px 15px 0 rgba(32, 33, 36, 0.2);
+  border-color: #fff
 }
 
 </style>

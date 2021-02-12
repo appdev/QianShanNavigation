@@ -92,10 +92,10 @@ github：https://github.com/5iux/sou
 }
 
 .con .sou form img{
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 36px;
     display: block;
-    padding: 5px 6px;
+    padding: 5px;
     position: absolute;
     z-index: 10;
     right: 6px;
@@ -237,7 +237,7 @@ github：https://github.com/5iux/sou
 }
 
 .list {
-    width: 337px;
+    width: 370px;
     padding: 0 20px;
     height: 100%;
     overflow: hidden;

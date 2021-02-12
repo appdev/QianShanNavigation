@@ -1,5 +1,5 @@
-
-
-let baseURL = 'http://127.0.0.1:9080';
-
-export default baseURL
+let baseURL = 'http://192.168.0.122:9080';
+const login = baseURL + "/login"
+export default {
+    login
+}

@@ -22,7 +22,7 @@
           </a>
 
         </li>
-        <li v-show="editMode"><a rel="nofollow" href="#">
+        <li v-show="editMode" @click="addNew('WEB')"><a href="#">
           <img src="../../public/static/add.svg"/>
           添加站点</a>
         </li>
@@ -30,7 +30,7 @@
       </ul>
       <ul v-show="editMode">
         <!------>
-        <li class="title" @click="addNewCategory">
+        <li class="title" @click="addNew('CATEGORY')">
           添加新分类
         </li>
       </ul>
@@ -40,23 +40,28 @@
       <h4>自定义模式</h4>
       <a href="#" id="finish-customize" style="display: inherit;" @click="exitEdit">退出</a>
     </div>
-
+    <LoginDialog :show="showLogin" @dialogData="closeDialog"/>
+    <AddNew :show="addNewWeb"/>
   </div>
 
 </template>
 
 <script>
-import {$get, $post} from "@/api";
+import {$get} from "@/api";
 import pin from "../../public/static/pin.svg"
 import pinUp from "../../public/static/pin_up.svg"
+import LoginDialog from "@/components/LoginDialog";
+import AddNew from "@/components/AddNewWebDialog"
 
 export default {
   name: "MenuPage",
-
+  components: {
+    LoginDialog,
+    AddNew
+  },
   mounted: function () {
     $get("./../static/userweb.json").then(res => {
-
-      res.data.forEach(item => {
+      res.forEach(item => {
         let category = item["category"]
         let webItem = {
           "url": item['url'],
@@ -78,6 +83,8 @@ export default {
       originalList: new Map(),
       editMode: false,
       lock: false,
+      showLogin: false,
+      addNewWeb: false,
       pinImage: pin
     };
   }, methods: {
@@ -89,17 +96,13 @@ export default {
     }, exitEdit() {
       this.editMode = !this.editMode
       // post 登陆
-
-      $post("/login", {
-        username: "violet",
-        password: "123456"
-      }).then(res => {
-        console.log(res)
-      }).catch(e => {
-        console.log(e)
-      })
-    }, addNewCategory() {
-
+    }, addNew(type) {
+      if (type === "WEB") {
+        this.showLogin = true
+      } else
+        this.addNew = true
+    }, closeDialog(data) {
+      this.showLogin = data
     }
   }
 }
@@ -121,12 +124,10 @@ img {
   display: flex;
   margin-top: 10px;
   flex-direction: row;
-  justify-content: end;
 
   .modify {
     height: 20px;
     width: 20px;
-    padding: 10px;
     cursor: pointer;
   }
 }
