@@ -3,26 +3,28 @@
       v-model="showStatus"
       :title="currentTitle"
       centered
+      :destroyOnClose="true"
       :afterClose="dialogClose"
   >
     <a-form
         id="loginFormDialog"
         :form="form"
         class="login-form"
+        autoComplete="off"
         @submit="handleSubmit"
     >
 
       <a-form-item v-show="showCategory" label="分类名称">
-        <a-input
-            v-decorator="['category', { rules: [{ required: showCategory, message: '请输入分类名称!' }],
+        <a-input autocomplete="off"
+                 v-decorator="['category', { rules: [{ required: showCategory, message: '请输入分类名称!' }],
               initialValue:this.name }]"
-            placeholder="分类名称"
+                 placeholder="分类名称"
         />
       </a-form-item>
       <a-form-item v-show="showWebInput" label="站点名称">
         <a-input
             v-decorator="['name', { rules: [{ required: showWebInput, message: '请输入站点名称'}],
-            initialValue:this.webObj != null ? this.webObj.name : '' }]"
+            initialValue:this.webObj != null ? this.webObj.Name : '' }]"
             placeholder="站点名称"
         />
       </a-form-item>
@@ -63,6 +65,9 @@
   </a-modal>
 </template>
 <script>
+import {update, updateCategory} from "@/api/config";
+import {showSuccess, showWarning} from "@/utils";
+
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -106,20 +111,36 @@ export default {
     });
   },
   methods: {
-    dialogClose() {
+    dialogClose(success) {
       this.showStatus = false
-      this.$emit('addWebDialogClose', false)//子组件对openStatus修改后向父组件发送事件通知
+      this.$emit('addWebDialogClose', false, success)//子组件对openStatus修改后向父组件发送事件通知
     }, changedValue(e) {
       console.log(e)
     },
     handleSubmit(e) {
       e.preventDefault();
+      let inputValues
       this.form.validateFields((err, values) => {
-        console.log(values)
         if (!err) {
-          console.log('Received values of form: ', values);
-        }
+          inputValues = values
+        } else showWarning(err)
       });
+      switch (this.dialogType) {
+        case "addSite":
+
+          break
+        case "modifySite":
+          if (inputValues)
+            this.modifySite(inputValues)
+          break
+        case "addClassification":
+
+          break
+        case "modifyClassification": // 修改分类
+          this.modifyClassification(inputValues)
+          break
+      }
+
     }, loadIcon() {
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -129,6 +150,36 @@ export default {
       });
     }, loadFinish() {
       this.loading = false
+    }, addNewWeb() {
+
+    }, modifySite(inputValues) {
+      let params = {
+        "id": this.webObj.id,
+        "name": inputValues.name,
+        "url": inputValues.address,
+        "category": this.webObj.Category
+      }
+      update(params).then(res => {
+        if (res.code === 200) {
+          showSuccess("修改成功")
+          this.dialogClose(true)
+        } else {
+          showWarning(res.msg)
+        }
+      })
+    }, modifyClassification(inputValues) {
+      let params = {
+        "oldCategory": this.name,
+        "newCategory": inputValues.category,
+      }
+      updateCategory(params).then(res => {
+        if (res.code === 200) {
+          showSuccess("修改成功")
+          this.dialogClose(true)
+        } else {
+          showWarning(res.msg)
+        }
+      })
     }
   },
   watch: {

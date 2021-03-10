@@ -10,6 +10,7 @@
         id="loginFormDialog"
         :form="form"
         class="login-form"
+        autoComplete="off"
         @submit="handleSubmit"
     >
       <a-form-item>
@@ -58,7 +59,8 @@
 </template>
 <script>
 import {login} from "@/api/config";
-import {setCookie, showSuccess, showWarning} from "@/utils";
+import {getCookie, setCookie, showSuccess, showWarning} from "@/utils";
+import axios from "axios";
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -93,7 +95,7 @@ export default {
       return isFieldTouched('userName') && getFieldError('userName');
     }, dialogClose(success) {
       this.showStatus = false
-      this.$emit('loginDialogClose', false,success)//子组件对openStatus修改后向父组件发送事件通知
+      this.$emit('loginDialogClose', false, success)//子组件对openStatus修改后向父组件发送事件通知
     },
     // Only show error after a field is touched.
     passwordError() {
@@ -115,6 +117,8 @@ export default {
             if (res.code === 200) {
               showSuccess(res.msg)
               setCookie("token", res.data.token)
+              // 设置 token
+              axios.defaults.headers.common['token'] = getCookie('token');
               this.dialogClose(true)
             } else {
               showWarning(res.msg)

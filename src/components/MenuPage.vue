@@ -6,7 +6,7 @@
     </div>
     <div id="menu" @mouseover="hover = true"><i></i></div>
     <div class="list" :class="{'closed':!hover&&!lock&&!editMode} " @mouseleave="hover = false">
-      <div class="actionBar">
+      <div class="actionBar" v-show="token">
         <img class="modify" src="../../public/static/modify.svg" @click="modify"/>
         <img class="modify" :src="pinImage"
              @click="ding"/>
@@ -21,11 +21,14 @@
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
             <img
-                :src="'https://www.google.com/s2/favicons?domain='+item['url'].replace('https://','').replace('http://','')"/>
-            {{ item['name'] }}
+                :src="'https://www.google.com/s2/favicons?domain='+item.url.replace('https://','').replace('http://','')"/>
+            {{ item.Name }}
           </a>
-          <a class="edit_text" @click="addNew('modifySite','',item)" href="#"
-             v-show="showEditItem===index && showEditCategory === ind">编辑</a>
+          <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
+            <a class="edit_text" @click="addNew('modifySite','',item)" href="#">编辑</a>
+            <a class="delete_text" @click="showConfirm(item)" href="#">删除</a>
+          </div>
+
         </li>
         <li v-show="editMode" @click="addNew('addSite')"><a href="#">
           <img src="../../public/static/add.svg"/>
@@ -58,36 +61,27 @@
 import pin from "../../public/static/pin.svg"
 import pinUp from "../../public/static/pin_up.svg"
 import login from "../../public/static/login.svg"
-import logout from "../../public/static/login_out.svg"
 import LoginDialog from "@/components/LoginDialog";
 import AddNew from "@/components/AddWebDialog"
-import {getCookie, setCookie} from "@/utils";
-import {getJson, getUserWebList} from "@/api/config";
+import {getCookie, setCookie, showSuccess} from "@/utils";
+import {deleteItem, getJson, getUserWebList} from "@/api/config";
+import logout from "../../public/static/login_out.svg";
 
 export default {
+
   name: "MenuPage",
   components: {
     LoginDialog,
     AddNew
-  }, watch: {
-    getToken: {
-      handler(newVal) {
-        console.log(newVal)
-        if (newVal) {
-          this.loginImage = logout
-        } else this.loginImage = login
-      },
-      immediate: true
-    }
-  }, computed: {
-    getToken() {
-      return getCookie("token")
-    }
   },
   mounted: function () {
-    getJson().then(res => {
-      this.makeData(res)
-    })
+    console.log("mounted")
+    this.token = getCookie("token")
+    this.getJson()
+    if (this.token) {
+      this.loginImage = logout
+    } else this.loginImage = login
+
   },
   data() {
     return {
@@ -104,9 +98,21 @@ export default {
       categoryName: "",
       webItem: '',
       loginImage: login,
+      token: ""
 
     };
   }, methods: {
+    getJson() {
+      if (this.token) {
+        console.log("getUserWebList")
+        this.getUserWebList()
+      } else {
+        console.log("getJsonFile")
+        getJson().then(res => {
+          this.makeData(res)
+        })
+      }
+    },
     modify() {
       this.editMode = !this.editMode
     }, ding() {
@@ -116,10 +122,13 @@ export default {
       this.editMode = !this.editMode
       // post 登陆
     }, addNew(type, name, item) {
-      console.log(type)
       if (type === "login") {
-        if (this.getToken) {
+        if (this.token) {
+          this.token = ""
           setCookie("token", "")
+          this.loginImage = login
+          this.getJson()
+          showSuccess("账号已退出")
         } else
           this.showLogin = true
       } else if (type === "modifyClassification" ||
@@ -136,11 +145,11 @@ export default {
         this.categoryName = name
         this.addNewType = type
       }
-    }
-    ,
-    closeLoginDialog(data, loginSuccess) {
+    }, closeLoginDialog(data, loginSuccess) {
       this.showLogin = data
       if (loginSuccess) {
+        this.loginImage = logout
+        this.token = getCookie("token")
         this.getUserWebList()
       }
     }, getUserWebList() {
@@ -148,40 +157,56 @@ export default {
         this.makeData(res.data)
       })
     }, makeData(res) {
+      this.originalList = new Map()
       res.forEach(item => {
-        let category = item["category"]
-        let webItem = {
-          "url": item['url'],
-          "name": item["name"],
-          "weight": item["weight"]
-        }
+        let category = item.category
         if (this.originalList.get(category)) {
-          this.originalList.get(category).push(webItem)
+          this.originalList.get(category).push(item)
         } else {
-          this.originalList.set(category, [webItem])
+          this.originalList.set(category, [item])
         }
       })
-    }
-    ,
-    closeAddNewDialog(data) {
-      console.log(data)
+    }, closeAddNewDialog(data, success) {
       this.addNewWeb = data
-    }
-    ,
-    enter(index, ind) {
+      if (success) {
+        this.getUserWebList()
+      }
+    }, deleteItem(item) {
+      let params = {
+        "id": item.id
+      }
+      deleteItem(params).then(res => {
+        if (res.code === 200) {
+          showSuccess("删除成功")
+          this.getUserWebList()
+        } else {
+          showSuccess(res.msg)
+        }
+      })
+    }, showConfirm(item) {
+      this.$confirm({
+        title: `确定删除${item.Name}?`,
+        content: '删除后将无法回复',
+        okText: '确定',
+        okType: 'danger',
+        cancelText: '取消',
+        destroyOnClose:true,
+        onOk: () => {
+          this.deleteItem(item)
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      });
+    }, enter(index, ind) {
       if (this.editMode) {
         this.showEditItem = index
         this.showEditCategory = ind
       }
-    }
-    ,
-    leave() {
+    }, leave() {
       this.showEditItem = -1
       this.showEditCategory = -1
-
-    }
-    ,
-    refreshBack() {
+    }, refreshBack() {
 
     }
   }
@@ -301,9 +326,23 @@ span.edit-website {
   cursor: pointer
 }
 
-.edit_text {
-  text-align: center;
+.editBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .edit_text {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .delete_text {
+    flex: 1 1 auto;
+    text-align: center;
+    background: red;
+  }
 }
+
 
 .login_bar {
   transform: scale(0.8);

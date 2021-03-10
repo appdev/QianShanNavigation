@@ -9,7 +9,7 @@ Vue.use(Antd);
 Vue.config.devtools = process.env.NODE_ENV === 'development'
 
 message.config({
-    top: `200px`,
+    top: `100px`,
     duration: 2,
     maxCount: 3,
 });
