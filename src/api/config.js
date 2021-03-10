@@ -1,5 +1,13 @@
-let baseURL = 'http://192.168.0.122:9080';
-const login = baseURL + "/login"
-export default {
-    login
+import {$get, $post} from "@/api/index";
+
+
+export const login = function (params) {
+    return $post('/login', params)
+}
+export const getJson = function (params) {
+    return $get('/static/json/userweb.json', params)
+}
+
+export const getUserWebList = function (params){
+    return $get('/finds', params)
 }

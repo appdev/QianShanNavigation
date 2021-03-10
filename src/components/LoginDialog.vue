@@ -3,6 +3,7 @@
       v-model="showStatus"
       title="登录&同步"
       centered
+      :destroyOnClose="true"
       :afterClose="dialogClose"
   >
     <a-form
@@ -56,6 +57,9 @@
   </a-modal>
 </template>
 <script>
+import {login} from "@/api/config";
+import {setCookie, showSuccess, showWarning} from "@/utils";
+
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -80,16 +84,16 @@ export default {
       // To disabled submit button at the beginning.
       this.form.validateFields();
     });
-    console.log(this.showStatus)
   },
+
   methods: {
     // Only show error after a field is touched.
     userNameError() {
       const {getFieldError, isFieldTouched} = this.form;
       return isFieldTouched('userName') && getFieldError('userName');
-    }, dialogClose() {
+    }, dialogClose(success) {
       this.showStatus = false
-      this.$emit('dialogData', false)//子组件对openStatus修改后向父组件发送事件通知
+      this.$emit('loginDialogClose', false,success)//子组件对openStatus修改后向父组件发送事件通知
     },
     // Only show error after a field is touched.
     passwordError() {
@@ -99,15 +103,29 @@ export default {
     ,
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((values) => {
-        // if (!err) {
-        // }
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          let rember = values.remember
+          let params = {
+            "username": values.userName,
+            "password": values.password,
+            "remember": rember
+          }
+          login(params).then(res => {
+            if (res.code === 200) {
+              showSuccess(res.msg)
+              setCookie("token", res.data.token)
+              this.dialogClose(true)
+            } else {
+              showWarning(res.msg)
+            }
+          })
 
-        console.log(values)
+        }
       });
     },
-  },watch: {
-    show (val) {
+  }, watch: {
+    show(val) {
       this.showStatus = val
     }
   },

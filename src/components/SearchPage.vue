@@ -150,7 +150,6 @@ export default {
   },
   computed: {
     searchLogo() {
-
       return this.isGoogle ? googleLogo : baiduLogo
     }
   }

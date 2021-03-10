@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Cookies from "js-cookie";
+import {message} from "ant-design-vue";
 
 export var event = new Vue();
 
@@ -36,4 +37,11 @@ export const removeCookie = (key) => {
 
 export const setCookie = (key, value) => {
     Cookies.set(key, value, {expires: 365})
+}
+
+export const showWarning = (val) => {
+    message.warning(val);
+}
+export const showSuccess = (val) => {
+    message.success(val);
 }

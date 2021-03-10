@@ -1,10 +1,14 @@
 import axios from 'axios'
-import Qs from 'qs'
 import {getCookie} from "@/utils";
+import * as Qs from "qs";
+
+let baseURL = 'http://127.0.0.1:9080';
+
 
 axios.defaults.headers['Content-Type']='application/json';
 axios.defaults.headers.common['token'] = getCookie('token') || '';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.baseURL = baseURL;
 
 /**
  * jsonp跨域
@@ -134,6 +138,7 @@ export const getJsonp = function (url, params) {
     })
 }
 
+// 封装axios--------------------------------------------------------------------------------------
 export const $get = (url, params) => {
     return axios.get(url, {params: params})
 }
@@ -145,8 +150,19 @@ export const $post = (url, params) => {
     return axios.post(url, params, options)
 }
 
+export const $postQs = (url, params) => {
+    const options = {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }
+    return axios.post(url, Qs.stringify(params), options)
+}
+
 export const $postJS = (url, params) => {
     const options = {headers: {'Content-Type': 'application/json'}}
     return axios.post(url, params, options)
 };
-
+export const $postUp = (url, params) => {
+    const options = {headers: {'Content-Type': 'multipart/form-data'}};
+    return axios.post(url, params, options)
+};
+export default axios
