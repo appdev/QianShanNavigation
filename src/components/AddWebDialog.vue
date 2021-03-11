@@ -35,6 +35,20 @@
                  placeholder="站点地址"
         />
       </a-form-item>
+      <a-form-item  v-show="showWebInput">
+        <a-checkbox
+            v-decorator="[
+          'displayIcon',
+          {
+            valuePropName: 'checked',
+            initialValue: false,
+          },
+        ]"
+        >
+          不显示Favicon
+        </a-checkbox>
+      </a-form-item>
+
       <!--      <div class="icon" v-show="!customIcon">-->
       <!--        <label>Favicon:</label>-->
       <!--        <img :src="iconUrl" v-show="iconUrl!==''">-->
@@ -65,7 +79,7 @@
   </a-modal>
 </template>
 <script>
-import {update, updateCategory} from "@/api/config";
+import {addweb, update, updateCategory} from "@/api/config";
 import {showSuccess, showWarning} from "@/utils";
 
 function hasErrors(fieldsError) {
@@ -109,6 +123,7 @@ export default {
       // To disabled submit button at the beginning.
       this.form.validateFields();
     });
+    console.log(this.name)
   },
   methods: {
     dialogClose(success) {
@@ -127,14 +142,14 @@ export default {
       });
       switch (this.dialogType) {
         case "addSite":
-
+          this.addSite(inputValues)
           break
         case "modifySite":
           if (inputValues)
             this.modifySite(inputValues)
           break
         case "addClassification":
-
+          this.addClassification(inputValues)
           break
         case "modifyClassification": // 修改分类
           this.modifyClassification(inputValues)
@@ -150,14 +165,12 @@ export default {
       });
     }, loadFinish() {
       this.loading = false
-    }, addNewWeb() {
-
     }, modifySite(inputValues) {
       let params = {
         "id": this.webObj.id,
         "name": inputValues.name,
         "url": inputValues.address,
-        "category": this.webObj.Category
+        "category": this.webObj.category
       }
       update(params).then(res => {
         if (res.code === 200) {
@@ -178,6 +191,35 @@ export default {
           this.dialogClose(true)
         } else {
           showWarning(res.msg)
+        }
+      })
+    }, addClassification(inputValues) {
+      let params = {
+        "name": inputValues.name,
+        "url": inputValues.address,
+        "category": inputValues.category,
+        "displayIcon": inputValues.displayIcon
+      }
+      console.log(params)
+      this.addNewWeb(params)
+    }, addSite(inputValues) {
+      let params = {
+        "name": inputValues.name,
+        "url": inputValues.address,
+        "displayIcon": inputValues.displayIcon,
+        "category": this.name
+      }
+      this.addNewWeb(params)
+    }, addNewWeb(params) {
+      addweb(params).then(res => {
+        if (res.code === 200) {
+          showSuccess("添加成功")
+          this.dialogClose(true)
+        } else {
+          console.log("erererer ")
+          if (res.msg)
+            showWarning(res.msg)
+          else showWarning("添加失败")
         }
       })
     }

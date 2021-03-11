@@ -21,3 +21,9 @@ export const update = function (params) {
 export const updateCategory = function (params) {
     return $postUp('/update/category', params)
 }
+export const addweb = function (params) {
+    return $postUp('/addweb', params)
+}
+export const addCategory = function (params) {
+    return $postUp('/add/category', params)
+}

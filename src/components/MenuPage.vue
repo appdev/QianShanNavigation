@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="login_bar">
-      <img :src="loginImage" class="login" @click="addNew('login','','')">
-      <img src="../../public/static/refresh.svg" class="login" @click="refreshBack">
+      <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
+      <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBack">
     </div>
     <div id="menu" @mouseover="hover = true"><i></i></div>
     <div class="list" :class="{'closed':!hover&&!lock&&!editMode} " @mouseleave="hover = false">
       <div class="actionBar" v-show="token">
-        <img class="modify" src="../../public/static/modify.svg" @click="modify"/>
-        <img class="modify" :src="pinImage"
+        <img class="modify" src="../../public/static/modify.svg" @click="modify" alt="自定义模式"/>
+        <img class="modify" :src="pinImage" alt="固定侧边"
              @click="ding"/>
       </div>
       <ul v-for="(category,ind) in originalList" :key="ind">
@@ -21,16 +21,16 @@
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
             <img
-                :src="'https://www.google.com/s2/favicons?domain='+item.url.replace('https://','').replace('http://','')"/>
+                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>
             {{ item.Name }}
           </a>
           <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
-            <a class="edit_text" @click="addNew('modifySite','',item)" href="#">编辑</a>
+            <a class="edit_text" @click="addNew('modifySite',category[0],item)" href="#">编辑</a>
             <a class="delete_text" @click="showConfirm(item)" href="#">删除</a>
           </div>
 
         </li>
-        <li v-show="editMode" @click="addNew('addSite')"><a href="#">
+        <li v-show="editMode" @click="addNew('addSite',category[0])"><a href="#" title="添加新站点">
           <img src="../../public/static/add.svg"/>
           添加站点</a>
         </li>
@@ -38,7 +38,7 @@
       </ul>
       <ul v-show="editMode">
         <!------>
-        <li class="addNew" @click="addNew('addClassification')"><a href="#">
+        <li class="addNew" @click="addNew('addClassification')"><a href="#" title="添加新分类">
           <img class="addCategory" src="../../public/static/add.svg"/> 添加新分类</a>
         </li>
       </ul>
@@ -135,11 +135,6 @@ export default {
           type === "addSite" ||
           type === "modifySite" ||
           type === "addClassification") {
-        // if (type === "addSite") {
-        //   this.addNewWeb = true
-        // } else {
-        //   this.addNewWeb = false
-        // }
         this.addNewWeb = true
         this.webItem = JSON.stringify(item)
         this.categoryName = name
@@ -154,7 +149,8 @@ export default {
       }
     }, getUserWebList() {
       getUserWebList().then(res => {
-        this.makeData(res.data)
+        if (res.code === 200)
+          this.makeData(res.data)
       })
     }, makeData(res) {
       this.originalList = new Map()
@@ -190,7 +186,7 @@ export default {
         okText: '确定',
         okType: 'danger',
         cancelText: '取消',
-        destroyOnClose:true,
+        destroyOnClose: true,
         onOk: () => {
           this.deleteItem(item)
         },
