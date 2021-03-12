@@ -56,7 +56,8 @@ export default {
       this.isGoogle = !this.isGoogle
     }, submit(content) {
       if (content) {
-        window.open("https://www.google.com/search?q=" + content, '_blank');
+        let url = this.isGoogle?"https://www.google.com/search?q=":"https://www.baidu.com/s?wd="
+        window.open(url+ content, '_blank');
         this.q = ""
         this.suggestion = []
         this.hasInputText = false
