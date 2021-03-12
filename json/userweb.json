@@ -1,0 +1,488 @@
+[
+  {
+    "url": "https://www.baidu.com/",
+    "category": "常用·工作",
+    "name": "百度",
+    "weight": "101"
+  },
+  {
+    "url": "https://www.google.com",
+    "category": "常用·工作",
+    "name": "谷歌",
+    "weight": "102"
+  },
+  {
+    "url": "https://wx.qq.com/",
+    "category": "常用·工作",
+    "name": "网页版微信",
+    "weight": "104"
+  },
+  {
+    "url": "https://www.yinxiang.com/",
+    "category": "常用·工作",
+    "name": "印象笔记",
+    "weight": "108"
+  },
+  {
+    "url": "https://mail.qq.com/",
+    "category": "常用·工作",
+    "name": "QQ邮箱",
+    "weight": "110"
+  },
+  {
+    "url": "https://mail.google.com",
+    "category": "常用·工作",
+    "name": "Gmail",
+    "weight": "111"
+  },
+  {
+    "url": "http://douban.fm/",
+    "category": "常用·工作",
+    "name": "豆瓣电台",
+    "weight": "112"
+  },
+  {
+    "url": "http://www.163.com/",
+    "category": "常用·工作",
+    "name": "网易",
+    "weight": "113"
+  },
+  {
+    "url": "http://dict.youdao.com/",
+    "category": "常用·工作",
+    "name": "有道词典",
+    "weight": "119"
+  },
+  {
+    "url": "http://www.zhihu.com/",
+    "category": "常用·社交",
+    "name": "知乎",
+    "weight": "201"
+  },
+  {
+    "url": "http://weibo.com/",
+    "category": "常用·社交",
+    "name": "微博",
+    "weight": "202"
+  },
+  {
+    "url": "http://www.douban.com/",
+    "category": "常用·社交",
+    "name": "豆瓣",
+    "weight": "203"
+  },
+  {
+    "url": "http://xueqiu.com/",
+    "category": "常用·社交",
+    "name": "雪球",
+    "weight": "204"
+  },
+  {
+    "url": "http://www.newsmth.net/",
+    "category": "常用·社交",
+    "name": "水木社区",
+    "weight": "205"
+  },
+  {
+    "url": "http://www.jianshu.com/",
+    "category": "常用·社交",
+    "name": "简书",
+    "weight": "206"
+  },
+  {
+    "url": "http://www.hupu.com/",
+    "category": "常用·社交",
+    "name": "虎扑",
+    "weight": "207"
+  },
+  {
+    "url": "http://www.chiphell.com/",
+    "category": "常用·社交",
+    "name": "Chiphell",
+    "weight": "208"
+  },
+  {
+    "url": "http://www.v2ex.com/",
+    "category": "常用·社交",
+    "name": "V2EX",
+    "weight": "209"
+  },
+  {
+    "url": "http://news.baidu.com/",
+    "category": "新闻",
+    "name": "百度新闻",
+    "weight": "306"
+  },
+  {
+    "url": "http://www.xinhuanet.com/",
+    "category": "新闻",
+    "name": "新华网",
+    "weight": "307"
+  },
+  {
+    "url": "http://www.people.com.cn/",
+    "category": "新闻",
+    "name": "人民网",
+    "weight": "308"
+  },
+  {
+    "url": "https://36kr.com/",
+    "category": "新闻",
+    "name": "36氪",
+    "weight": "309"
+  },
+  {
+    "url": "http://www.thepaper.cn/",
+    "category": "新闻",
+    "name": "澎湃新闻",
+    "weight": "310"
+  },
+  {
+    "url": "http://www.ftchinese.com/",
+    "category": "新闻",
+    "name": "FT中文网",
+    "weight": "312"
+  },
+  {
+    "url": "http://www.qdaily.com/",
+    "category": "新闻",
+    "name": "好奇心日报",
+    "weight": "313"
+  },
+  {
+    "url": "http://www.jiemian.com/",
+    "category": "新闻",
+    "name": "界面",
+    "weight": "314"
+  },
+  {
+    "url": "http://www.autohome.com.cn/",
+    "category": "新闻",
+    "name": "汽车之家",
+    "weight": "315"
+  },
+  {
+    "url": "http://www.youku.com/",
+    "category": "视频",
+    "name": "优酷",
+    "weight": "2501"
+  },
+  {
+    "url": "http://www.iqiyi.com/",
+    "category": "视频",
+    "name": "爱奇艺",
+    "weight": "2502"
+  },
+  {
+    "url": "http://tv.sohu.com/",
+    "category": "视频",
+    "name": "搜狐视频",
+    "weight": "2503"
+  },
+  {
+    "url": "http://v.qq.com/",
+    "category": "视频",
+    "name": "腾讯视频",
+    "weight": "2504"
+  },
+  {
+    "url": "http://www.letv.com/",
+    "category": "视频",
+    "name": "乐视",
+    "weight": "2505"
+  },
+  {
+    "url": "http://www.pptv.com/",
+    "category": "视频",
+    "name": "PPTV",
+    "weight": "2506"
+  },
+  {
+    "url": "http://www.douyutv.com/",
+    "category": "视频",
+    "name": "斗鱼TV",
+    "weight": "2701"
+  },
+  {
+    "url": "http://www.zhanqi.tv/",
+    "category": "视频",
+    "name": "战旗TV",
+    "weight": "2702"
+  },
+  {
+    "url": "http://www.huya.com/",
+    "category": "视频",
+    "name": "虎牙TV",
+    "weight": "2703"
+  },
+  {
+    "url": "https://www.taobao.com/",
+    "category": "购物",
+    "name": "淘宝",
+    "weight": "2801"
+  },
+  {
+    "url": "https://www.tmall.com/",
+    "category": "购物",
+    "name": "天猫",
+    "weight": "2803"
+  },
+  {
+    "url": "http://www.jd.com/",
+    "category": "购物",
+    "name": "京东",
+    "weight": "2804"
+  },
+  {
+    "url": "http://www.dangdang.com/",
+    "category": "购物",
+    "name": "当当",
+    "weight": "2806"
+  },
+  {
+    "url": "http://www.vip.com/",
+    "category": "购物",
+    "name": "唯品会",
+    "weight": "2807"
+  },
+  {
+    "url": "http://www.suning.com/",
+    "category": "购物",
+    "name": "苏宁易购",
+    "weight": "2808"
+  },
+  {
+    "url": "http://www.yhd.com/",
+    "category": "购物",
+    "name": "1号店",
+    "weight": "2809"
+  },
+  {
+    "url": "http://www.mi.com/",
+    "category": "购物",
+    "name": "小米网",
+    "weight": "2810"
+  },
+  {
+    "url": "http://www.mogujie.com/",
+    "category": "购物",
+    "name": "蘑菇街",
+    "weight": "2812"
+  },
+  {
+    "url": "http://open.163.com/",
+    "category": "发现",
+    "name": "网易公开课",
+    "weight": "1201"
+  },
+  {
+    "url": "http://www.next.36kr.com/posts",
+    "category": "发现",
+    "name": "Next",
+    "weight": "1203"
+  },
+  {
+    "url": "http://itjuzi.com/",
+    "category": "发现",
+    "name": "IT桔子",
+    "weight": "1204"
+  },
+  {
+    "url": "http://www.gewara.com/",
+    "category": "发现",
+    "name": "格瓦拉",
+    "weight": "1205"
+  },
+  {
+    "url": "http://www.app-echo.com/",
+    "category": "发现",
+    "name": "Echo回声",
+    "weight": "1207"
+  },
+  {
+    "url": "http://www.51talk.com/",
+    "category": "发现",
+    "name": "51talk",
+    "weight": "1208"
+  },
+  {
+    "url": "http://www.wolframalpha.com/",
+    "category": "发现",
+    "name": "Wolframalpha",
+    "weight": "1211"
+  },
+  {
+    "url": "https://duckduckgo.com/",
+    "category": "发现",
+    "name": "Duckduckgo",
+    "weight": "1212"
+  },
+  {
+    "url": "https://zh.wikipedia.org",
+    "category": "发现",
+    "name": "Wikipedia",
+    "weight": "1213"
+  },
+  {
+    "url": "http://www.qyer.com/",
+    "category": "商旅",
+    "name": "穷游",
+    "weight": "1701"
+  },
+  {
+    "url": "http://www.mafengwo.cn/",
+    "category": "商旅",
+    "name": "蚂蜂窝",
+    "weight": "1702"
+  },
+  {
+    "url": "http://breadtrip.com/",
+    "category": "商旅",
+    "name": "面包旅行",
+    "weight": "1703"
+  },
+  {
+    "url": "http://www.qunar.com/",
+    "category": "商旅",
+    "name": "去哪儿",
+    "weight": "1704"
+  },
+  {
+    "url": "http://www.ctrip.com/",
+    "category": "商旅",
+    "name": "携程",
+    "weight": "1705"
+  },
+  {
+    "url": "http://www.tianxun.com/",
+    "category": "商旅",
+    "name": "天巡",
+    "weight": "1707"
+  },
+  {
+    "url": "http://www.12306.cn/",
+    "category": "商旅",
+    "name": "12306",
+    "weight": "1708"
+  },
+  {
+    "url": "http://www.booking.com/",
+    "category": "商旅",
+    "name": "Booking",
+    "weight": "1709"
+  },
+  {
+    "url": "http://www.zuche.com/",
+    "category": "商旅",
+    "name": "神州租车",
+    "weight": "1711"
+  },
+  {
+    "url": "http://www.cmbchina.com/",
+    "category": "银行",
+    "name": "招商银行",
+    "weight": "2301"
+  },
+  {
+    "url": "http://www.icbc.com.cn/",
+    "category": "银行",
+    "name": "工商银行",
+    "weight": "2302"
+  },
+  {
+    "url": "http://www.ccb.com/",
+    "category": "银行",
+    "name": "建设银行",
+    "weight": "2303"
+  },
+  {
+    "url": "http://www.abchina.com/cn/",
+    "category": "银行",
+    "name": "农业银行",
+    "weight": "2304"
+  },
+  {
+    "url": "http://www.boc.cn/",
+    "category": "银行",
+    "name": "中国银行",
+    "weight": "2305"
+  },
+  {
+    "url": "http://www.bankcomm.com/",
+    "category": "银行",
+    "name": "交通银行",
+    "weight": "2306"
+  },
+  {
+    "url": "http://www.cgbchina.com.cn/",
+    "category": "银行",
+    "name": "广发银行",
+    "weight": "2307"
+  },
+  {
+    "url": "http://www.cmbc.com.cn/",
+    "category": "银行",
+    "name": "民生银行",
+    "weight": "2308"
+  },
+  {
+    "url": "http://bank.pingan.com/",
+    "category": "银行",
+    "name": "平安银行",
+    "weight": "2309"
+  },
+  {
+    "url": "http://www.meituan.com",
+    "category": "常用·生活",
+    "name": "美团",
+    "weight": "2401"
+  },
+  {
+    "url": "https://www.smzdm.com/",
+    "category": "常用·生活",
+    "name": "什么值得买",
+    "weight": "2409"
+  },
+  {
+    "url": "http://www.dianping.com/",
+    "category": "常用·生活",
+    "name": "大众点评",
+    "weight": "2402"
+  },
+  {
+    "url": "http://www.nuomi.com/",
+    "category": "常用·生活",
+    "name": "糯米",
+    "weight": "2403"
+  },
+  {
+    "url": "http://ele.me/",
+    "category": "常用·生活",
+    "name": "饿了么",
+    "weight": "2404"
+  },
+  {
+    "url": "http://waimai.meituan.com/",
+    "category": "常用·生活",
+    "name": "美团外卖",
+    "weight": "2405"
+  },
+  {
+    "url": "http://waimai.baidu.com/",
+    "category": "常用·生活",
+    "name": "百度外卖",
+    "weight": "2406"
+  },
+  {
+    "url": "http://58.com",
+    "category": "常用·生活",
+    "name": "58同城",
+    "weight": "2407"
+  },
+  {
+    "url": "http://ganji.com",
+    "category": "常用·生活",
+    "name": "赶集",
+    "weight": "2408"
+  }
+]
