@@ -6,6 +6,7 @@
 - 更多功能完善中
 
 ### 支持静态部署
+ [静态版本](https://github.com/appdev/QianShanNavigation/tree/static)
 
 可以直接放在 github pages 里。下载 release 下的文就可以直接静态部署
 
