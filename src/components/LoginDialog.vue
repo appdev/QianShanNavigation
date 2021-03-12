@@ -123,6 +123,8 @@ export default {
             } else {
               showWarning(res.msg)
             }
+          }).catch(() => {
+            showWarning("服务器访问异常，请检查网络")
           })
 
         }

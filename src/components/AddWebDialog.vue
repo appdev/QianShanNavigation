@@ -35,7 +35,7 @@
                  placeholder="站点地址"
         />
       </a-form-item>
-      <a-form-item  v-show="showWebInput">
+      <a-form-item v-show="false">
         <a-checkbox
             v-decorator="[
           'displayIcon',
@@ -123,7 +123,6 @@ export default {
       // To disabled submit button at the beginning.
       this.form.validateFields();
     });
-    console.log(this.name)
   },
   methods: {
     dialogClose(success) {
@@ -179,6 +178,8 @@ export default {
         } else {
           showWarning(res.msg)
         }
+      }).catch(() => {
+        showWarning("服务器访问异常，请检查网络")
       })
     }, modifyClassification(inputValues) {
       let params = {
@@ -192,6 +193,8 @@ export default {
         } else {
           showWarning(res.msg)
         }
+      }).catch(() => {
+        showWarning("服务器访问异常，请检查网络")
       })
     }, addClassification(inputValues) {
       let params = {
@@ -200,7 +203,6 @@ export default {
         "category": inputValues.category,
         "displayIcon": inputValues.displayIcon
       }
-      console.log(params)
       this.addNewWeb(params)
     }, addSite(inputValues) {
       let params = {
@@ -221,6 +223,8 @@ export default {
             showWarning(res.msg)
           else showWarning("添加失败")
         }
+      }).catch(() => {
+        showWarning("服务器访问异常，请检查网络")
       })
     }
   },

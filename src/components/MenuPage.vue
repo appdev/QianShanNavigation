@@ -4,13 +4,16 @@
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
       <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBack">
     </div>
+
     <div id="menu" @mouseover="hover = true"><i></i></div>
-    <div class="list" :class="{'closed':!hover&&!lock&&!editMode} " @mouseleave="hover = false">
-      <div class="actionBar" v-show="token">
+    <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} "
+         @mouseleave="hover = false">
+      <div class="actionBar" :class="{affixBg:top>20}">
         <img class="modify" src="../../public/static/modify.svg" @click="modify" alt="自定义模式"/>
         <img class="modify" :src="pinImage" alt="固定侧边"
              @click="ding"/>
       </div>
+
       <ul v-for="(category,ind) in originalList" :key="ind">
         <!------>
         <li class="title" :class="{'editModeClass':editMode}" @click="addNew('modifyClassification',category[0])">
@@ -21,8 +24,9 @@
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
             <img
-                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>
-            {{ item.Name }}
+                :src="'https://api.clowntool.cn/getico/?url='+item.url"/>
+            {{ item.name }}
+<!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
           </a>
           <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
             <a class="edit_text" @click="addNew('modifySite',category[0],item)" href="#">编辑</a>
@@ -63,9 +67,10 @@ import pinUp from "../../public/static/pin_up.svg"
 import login from "../../public/static/login.svg"
 import LoginDialog from "@/components/LoginDialog";
 import AddNew from "@/components/AddWebDialog"
-import {getCookie, setCookie, showSuccess} from "@/utils";
-import {deleteItem, getJson, getUserWebList} from "@/api/config";
+import {getCookie, setCookie, showSuccess, showWarning} from "@/utils";
+import {deleteItem, getUserWebList} from "@/api/config";
 import logout from "../../public/static/login_out.svg";
+import axios from "axios";
 
 export default {
 
@@ -98,18 +103,36 @@ export default {
       categoryName: "",
       webItem: '',
       loginImage: login,
-      token: ""
-
+      token: "",
+      top: 13,
     };
   }, methods: {
+    change(affixed) {
+      console.log(affixed);
+      console.log(this.$refs.container.scrollTop);
+    }, getScroll() {
+      console.log(event)
+      this.top = this.$refs.container.scrollTop
+      console.log(this.$refs.container.scrollTop);
+      // 滚动条距离底部的距离scrollBottom
+      // let scrollBottom =
+      //     event.target.scrollHeight -
+      //     event.target.scrollTop -
+      //     event.target.clientHeight;
+      // // if (this.finished && scrollBottom < 40) {
+      // //  操作
+      // // }
+      // console.log(scrollBottom)
+    },
     getJson() {
       if (this.token) {
-        console.log("getUserWebList")
         this.getUserWebList()
       } else {
         console.log("getJsonFile")
-        getJson().then(res => {
-          this.makeData(res)
+        axios.create({
+          baseURL: ""
+        }).get("/static/userweb.json").then(res => {
+          this.makeData(res.data)
         })
       }
     },
@@ -151,6 +174,8 @@ export default {
       getUserWebList().then(res => {
         if (res.code === 200)
           this.makeData(res.data)
+      }).catch(() => {
+        showWarning("服务器访问异常，请检查网络")
       })
     }, makeData(res) {
       this.originalList = new Map()
@@ -178,7 +203,9 @@ export default {
         } else {
           showSuccess(res.msg)
         }
-      })
+      }).catch(
+          showWarning("服务器访问异常，请检查网络")
+      )
     }, showConfirm(item) {
       this.$confirm({
         title: `确定删除${item.Name}?`,
@@ -189,10 +216,7 @@ export default {
         destroyOnClose: true,
         onOk: () => {
           this.deleteItem(item)
-        },
-        onCancel() {
-          console.log('Cancel');
-        },
+        }
       });
     }, enter(index, ind) {
       if (this.editMode) {
@@ -256,12 +280,16 @@ img {
 
 .actionBar {
   display: flex;
-  margin-top: 10px;
+  position: fixed;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
   flex-direction: row;
 
   .modify {
     height: 20px;
     width: 20px;
+    margin-top: 13px;
     cursor: pointer;
   }
 }
@@ -354,11 +382,16 @@ span.edit-website {
   .login {
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 }
 
 .editModeClass:hover {
   cursor: pointer
+}
+
+.affixBg {
+  background: #777777;
 }
 
 

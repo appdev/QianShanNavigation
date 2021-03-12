@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Antd from 'ant-design-vue';
+import Antd, {message} from 'ant-design-vue';
 import App from './App';
 import 'ant-design-vue/dist/antd.css';
 
@@ -9,11 +9,11 @@ Vue.use(Antd);
 
 Vue.config.devtools = process.env.NODE_ENV === 'development'
 
-// message.config({
-//     top: `100px`,
-//     duration: 2,
-//     maxCount: 3,
-// });
+message.config({
+    top: `100px`,
+    duration: 2,
+    maxCount: 3,
+});
 
 new Vue({
     render: h => h(App),

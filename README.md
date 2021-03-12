@@ -1,24 +1,13 @@
-# nav
+# 一款带后端的个人导航
 
-## Project setup
-```
-yarn install
-```
+### 支持静态部署
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+可以直接放在 github pages 里。下载 release 下的文就可以直接静态部署
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### 后端同步
 
-### Lints and fixes files
-```
-yarn lint
-```
+后端将会直接打包在 go 代码中。所以直接部署 go 后端既可以
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+

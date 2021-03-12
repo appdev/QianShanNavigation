@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <div class="con">
-      <div @click="Request" class="shlogo"></div>
+      <div class="shlogo"></div>
       <div class="sou">
         <form @submit.prevent="submit(q)">
           <!--          <div class="lg" :class="isGoogle? 'googleSearch':'baiduSearch'" @click="changed"></div>-->
@@ -23,8 +23,8 @@
       </div>
     </div>
     <div class="foot" style="height: 40px;">
-      <a href="https://github.com/5iux/sou/" style="color: #777;">Github</a><br>
-      © 2016-2021 by <a href="https://blog.5iux.cn/">5iux</a> . All rights reserved.
+      <a href="https://github.com/appdev/QianShanNavigation" style="color: #777;">Github</a><br>
+      © 2016-2021 by <a href="https://www.apkdv.com/">LengYue</a> . All rights reserved.
     </div>
   </div>
 </template>
@@ -32,9 +32,8 @@
 <script>
 import googleLogo from "@/assets/images/g.svg"
 import baiduLogo from "@/assets/images/baidu.svg"
-import {$post, getJsonp} from "@/api";
-import {event, setCookie} from "@/utils"
-import config from "@/api/config";
+import {getJsonp} from "@/api";
+import {event} from "@/utils"
 
 export default {
 
@@ -98,23 +97,6 @@ export default {
         this.hasInputText = false
       }
 
-    }, Request() {
-      $post(config.login, {
-        username: "violet",
-        password: "12456"
-      }).then(res => {
-
-        if (res["code"] === 200) {
-          console.log("success")
-          console.log(res)
-          setCookie("token", res.data["token"])
-          setCookie("name", res.data["name"])
-        } else console.log("fail")
-
-      }).catch(e => {
-        console.log(e)
-        console.log("12324")
-      })
     },
     selectDown(e) {
       if (this.showSuggestion) {
