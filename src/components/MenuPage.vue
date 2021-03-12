@@ -5,7 +5,7 @@
       <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBack">
     </div>
 
-    <div id="menu" @mouseover="hover = true"><i></i></div>
+    <div id="menu" @click="hover = true" @mouseover="hover = true"><i></i></div>
     <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} "
          @mouseleave="hover = false">
       <div v-show="showEditBar" class="actionBar" :class="{affixBg:top>20}">
@@ -19,12 +19,12 @@
         <li class="title" :class="{'editModeClass':editMode}" @click="addNew('modifyClassification',category[0])">
           {{ category[0] }}
         </li>
-        <li class="edit-website" v-for="(item,index) in category[1]" :key="index" @mouseleave="leave()"
+        <li class="edit-website" v-for="(item,index) in category[1]" @click.stop="handleTouchStart(index,ind,item)" :key="index" @mouseleave="leave()"
             @mouseenter="enter(index,ind)">
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
             <img
-                :src="'https://api.clowntool.cn/getico/?url='+item.url"/>
+                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>
             {{ item.name }}
             <!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
           </a>
@@ -56,6 +56,7 @@
     <AddNew :show="addNewWeb" :destroy-on-close="true"
             :dialogType="addNewType" :name="categoryName"
             :webItem="webItem"
+            :categoryList="categoryList"
             @addWebDialogClose="closeAddNewDialog"/>
   </div>
 
@@ -67,7 +68,7 @@ import pinUp from "../../public/static/pin_up.svg"
 import login from "../../public/static/login.svg"
 import LoginDialog from "@/components/LoginDialog";
 import AddNew from "@/components/AddWebDialog"
-import {getCookie, setCookie, showSuccess, showWarning} from "@/utils";
+import {event, getCookie, setCookie, showSuccess, showWarning} from "@/utils";
 import {deleteItem, getUserWebList} from "@/api/config";
 import logout from "../../public/static/login_out.svg";
 import axios from "axios";
@@ -81,12 +82,22 @@ export default {
   },
   mounted: function () {
     this.token = getCookie("token")
-    this.showEditBar = this.token !== ''
+    this.showEditBar = this.token
     this.getJson()
     if (this.token) {
       this.loginImage = logout
     } else this.loginImage = login
-
+    event.$on("searchPageClick", (val) => {//监听aevent事件
+      if (val) {
+        this.hover = false
+      }
+    })
+    window.onresize = () => {
+      return (() => {
+        window.screenWidth = document.body.clientWidth
+        this.screenWidth = window.screenWidth
+      })()
+    }
   },
   data() {
     return {
@@ -104,6 +115,8 @@ export default {
       categoryName: "",
       webItem: '',
       loginImage: login,
+      categoryList:"",
+      screenWidth: document.body.clientWidth, // 屏幕尺寸
       token: "",
       top: 13,
     };
@@ -123,6 +136,14 @@ export default {
       }).get("/static/userweb.json").then(res => {
         this.makeData(res.data)
       })
+    }, handleTouchStart(index, ind) {
+      if (this.editMode) {
+        this.showEditItem = index
+        this.showEditCategory = ind
+      // } else {
+      //   // e.preventDefault()//添加阻止click事件触发
+      //   window.open(item.url, '_blank')
+      }
     },
     modify() {
       this.editMode = !this.editMode
@@ -183,6 +204,7 @@ export default {
           this.originalList.set(category, [item])
         }
       })
+      this.categoryList = JSON.stringify(Array.from( this.originalList.keys() ))
     }, closeAddNewDialog(data, success) {
       this.addNewWeb = data
       if (success) {
@@ -204,7 +226,7 @@ export default {
       )
     }, showConfirm(item) {
       this.$confirm({
-        title: `确定删除${item.Name}?`,
+        title: `确定删除${item.name}?`,
         content: '删除后将无法回复',
         okText: '确定',
         okType: 'danger',

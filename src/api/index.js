@@ -2,7 +2,7 @@ import axios from 'axios'
 import {getCookie} from "@/utils";
 import * as Qs from "qs";
 
-let baseURL = 'http://127.0.0.1:9080';
+let baseURL = 'http://192.168.0.122:9080';
 
 
 axios.defaults.headers['Content-Type']='application/json';

@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div id="content" @click="hideSuggestion">
     <div class="con">
       <div class="shlogo"></div>
       <div class="sou">
@@ -33,7 +33,7 @@
 import googleLogo from "@/assets/images/g.svg"
 import baiduLogo from "@/assets/images/baidu.svg"
 import {getJsonp} from "@/api";
-import {event} from "@/utils"
+import {event} from "@/utils";
 
 export default {
 
@@ -51,13 +51,6 @@ export default {
   },
   props: {
     msg: String
-  }, mounted: function () {
-    event.$on("mainPageClick", (val) => {//监听aevent事件
-      if (val) {
-        this.showSuggestion = false
-        this.hasInputText = false
-      }
-    })
   }, methods: {
     changed() {
       this.isGoogle = !this.isGoogle
@@ -89,8 +82,6 @@ export default {
             this.selectSuggestion = -1
             this.showSuggestion = true
           }
-        }).catch(error => {
-          console.log(error)
         })
       } else {
         this.showSuggestion = false
@@ -126,8 +117,10 @@ export default {
       }
     }
     ,
-    empty() {
-
+    hideSuggestion() {
+      event.$emit("searchPageClick", true)
+      this.showSuggestion = false
+      this.hasInputText = false
     }
   },
   computed: {

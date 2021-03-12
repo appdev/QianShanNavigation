@@ -21,10 +21,17 @@
                  placeholder="分类名称"
         />
       </a-form-item>
+      <!--        分类选择-->
+      <a-form-item v-show="showWebInput" label="分类名称">
+        <a-select :default-value="this.name" @change="handleChange">
+          <a-select-option v-for="(category,ind) in categoryArray" :key="ind">{{ category }}</a-select-option>
+        </a-select>
+      </a-form-item>
+      <!--      站点名字-->
       <a-form-item v-show="showWebInput" label="站点名称">
         <a-input
             v-decorator="['name', { rules: [{ required: showWebInput, message: '请输入站点名称'}],
-            initialValue:this.webObj != null ? this.webObj.Name : '' }]"
+            initialValue:this.webObj != null ? this.webObj.name : '' }]"
             placeholder="站点名称"
         />
       </a-form-item>
@@ -101,6 +108,10 @@ export default {
     }, webItem: {
       type: String,
       default: ""
+    },
+    categoryList: {
+      type: String,
+      default: ""
     }
   }, data() {
     return {
@@ -114,7 +125,8 @@ export default {
       iconUrl: "",
       loading: false,
       customIcon: false,
-      webObj: {}
+      webObj: {},
+      categoryArray: []
     }
   },
 
@@ -130,6 +142,8 @@ export default {
       this.$emit('addWebDialogClose', false, success)//子组件对openStatus修改后向父组件发送事件通知
     }, changedValue(e) {
       console.log(e)
+    }, handleChange(value) {
+      this.webObj.category = this.categoryArray[value]
     },
     handleSubmit(e) {
       e.preventDefault();
@@ -164,7 +178,9 @@ export default {
       });
     }, loadFinish() {
       this.loading = false
-    }, modifySite(inputValues) {
+    },
+    // 修改站点
+    modifySite(inputValues) {
       let params = {
         "id": this.webObj.id,
         "name": inputValues.name,
@@ -181,7 +197,9 @@ export default {
       }).catch(() => {
         showWarning("服务器访问异常，请检查网络")
       })
-    }, modifyClassification(inputValues) {
+    },
+    // 修改分类名字
+    modifyClassification(inputValues) {
       let params = {
         "oldCategory": this.name,
         "newCategory": inputValues.category,
@@ -218,7 +236,6 @@ export default {
           showSuccess("添加成功")
           this.dialogClose(true)
         } else {
-          console.log("erererer ")
           if (res.msg)
             showWarning(res.msg)
           else showWarning("添加失败")
@@ -233,11 +250,14 @@ export default {
       this.showStatus = val
     }, webItem(val) {
       if (val !== '') {
-        console.log(val)
         this.webObj = JSON.parse(val)
       } else this.webObj = {}
       this.customIcon = false
       this.iconUrl = "https://www.google.com/s2/favicons?domain=" + this.webObj.url
+    }, categoryList(val) {
+      if (val !== '') {
+        this.categoryArray = JSON.parse(val)
+      } else this.webObj = []
     },
     dialogType(val) {
       this.loading = false

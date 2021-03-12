@@ -1,5 +1,5 @@
 <template>
-  <div id="app"  @touchstart="pageClicked" @click="pageClicked">
+  <div id="app">
     <MenuPage/>
     <SearchPage/>
   </div>
@@ -8,18 +8,13 @@
 <script>
 import SearchPage from './components/SearchPage.vue'
 import MenuPage from './components/MenuPage.vue'
-import {event} from '@/utils'
 
 export default {
   name: 'App',
   components: {
     SearchPage,
     MenuPage
-  }, methods: {
-    pageClicked() {
-      event.$emit("mainPageClick", true)
-    }
-  }
+  }, methods: {}
 }
 </script>
 

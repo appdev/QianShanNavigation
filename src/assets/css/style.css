@@ -162,7 +162,7 @@
     position: absolute;
     right: 10px;
     top: 5px;
-    z-index: 10;
+    z-index: 100;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -233,9 +233,10 @@
     overflow: hidden;
     overflow-y: auto;
     position: absolute;
+    padding-bottom: 20px;
     right: 0px;
     top: 0px;
-    z-index: 2000;
+    z-index: 20;
     background: rgb(41 53 80 / 0.6);
     transition: 0.3s all linear;
 }

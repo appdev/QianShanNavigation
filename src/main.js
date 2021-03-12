@@ -2,14 +2,12 @@ import Vue from 'vue';
 import Antd, {message} from 'ant-design-vue';
 import App from './App';
 import 'ant-design-vue/dist/antd.css';
-import VConsole from 'vconsole';
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
 
 Vue.config.devtools = process.env.NODE_ENV === 'development'
 
-Vue.prototype.$vconsole = new VConsole();
 message.config({
     top: `100px`,
     duration: 2,
