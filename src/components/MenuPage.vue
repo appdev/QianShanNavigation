@@ -8,7 +8,7 @@
     <div id="menu" @mouseover="hover = true"><i></i></div>
     <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} "
          @mouseleave="hover = false">
-      <div class="actionBar" :class="{affixBg:top>20}">
+      <div v-show="showEditBar" class="actionBar" :class="{affixBg:top>20}">
         <img class="modify" src="../../public/static/modify.svg" @click="modify" alt="自定义模式"/>
         <img class="modify" :src="pinImage" alt="固定侧边"
              @click="ding"/>
@@ -80,8 +80,8 @@ export default {
     AddNew
   },
   mounted: function () {
-    console.log("mounted")
     this.token = getCookie("token")
+    this.showEditBar = this.token !== ''
     this.getJson()
     if (this.token) {
       this.loginImage = logout
@@ -96,6 +96,7 @@ export default {
       lock: false,
       showLogin: false,
       addNewWeb: false,
+      showEditBar: false,
       pinImage: pin,
       addNewType: "",
       showEditItem: -1,
@@ -107,34 +108,21 @@ export default {
       top: 13,
     };
   }, methods: {
-    change(affixed) {
-      console.log(affixed);
-      console.log(this.$refs.container.scrollTop);
-    }, getScroll() {
-      console.log(event)
+    getScroll() {
       this.top = this.$refs.container.scrollTop
-      console.log(this.$refs.container.scrollTop);
-      // 滚动条距离底部的距离scrollBottom
-      // let scrollBottom =
-      //     event.target.scrollHeight -
-      //     event.target.scrollTop -
-      //     event.target.clientHeight;
-      // // if (this.finished && scrollBottom < 40) {
-      // //  操作
-      // // }
-      // console.log(scrollBottom)
     },
     getJson() {
       if (this.token) {
         this.getUserWebList()
       } else {
-        console.log("getJsonFile")
-        axios.create({
-          baseURL: ""
-        }).get("/static/userweb.json").then(res => {
-          this.makeData(res.data)
-        })
+        this.accessToLocalData()
       }
+    }, accessToLocalData() {
+      axios.create({
+        baseURL: ""
+      }).get("/static/userweb.json").then(res => {
+        this.makeData(res.data)
+      })
     },
     modify() {
       this.editMode = !this.editMode
@@ -150,6 +138,7 @@ export default {
           this.token = ""
           setCookie("token", "")
           this.loginImage = login
+          this.showEditBar = false
           this.getJson()
           showSuccess("账号已退出")
         } else
@@ -166,6 +155,7 @@ export default {
     }, closeLoginDialog(data, loginSuccess) {
       this.showLogin = data
       if (loginSuccess) {
+        this.showEditBar = true
         this.loginImage = logout
         this.token = getCookie("token")
         this.getUserWebList()
@@ -174,8 +164,14 @@ export default {
       getUserWebList().then(res => {
         if (res.code === 200)
           this.makeData(res.data)
-      }).catch(() => {
-        showWarning("服务器访问异常，请检查网络")
+      }).catch((err) => {
+        if (!err.status) {
+          this.showEditBar = false
+          showWarning("服务器访问异常，正在切换到原始导航数据，请检查网络")
+          this.accessToLocalData()
+        } else {
+          showWarning("服务器访问异常")
+        }
       })
     }, makeData(res) {
       this.originalList = new Map()
@@ -392,6 +388,6 @@ span.edit-website {
 }
 
 .affixBg {
-  background: #777777;
+  background: #07c160;
 }
 </style>
