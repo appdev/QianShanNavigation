@@ -13,6 +13,5 @@
 
 后端将会直接打包在 go 代码中。所以直接部署 go 后端既可以
 
-
-
-
+> 如果网络允许，可以替换 其中获取favicon的 API 为 Google API  http://www.google.com/s2/favicons?domain=
+> 加载速速更快。
