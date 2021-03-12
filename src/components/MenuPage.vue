@@ -26,7 +26,7 @@
             <img
                 :src="'https://api.clowntool.cn/getico/?url='+item.url"/>
             {{ item.name }}
-<!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
+            <!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
           </a>
           <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
             <a class="edit_text" @click="addNew('modifySite',category[0],item)" href="#">编辑</a>
@@ -154,10 +154,10 @@ export default {
           showSuccess("账号已退出")
         } else
           this.showLogin = true
-      } else if (type === "modifyClassification" ||
+      } else if ((type === "modifyClassification" ||
           type === "addSite" ||
           type === "modifySite" ||
-          type === "addClassification") {
+          type === "addClassification") && this.editMode) {
         this.addNewWeb = true
         this.webItem = JSON.stringify(item)
         this.categoryName = name
@@ -282,6 +282,7 @@ img {
   display: flex;
   position: fixed;
   width: 100%;
+  padding-left: 20px;
   margin-bottom: 20px;
   height: 40px;
   flex-direction: row;
@@ -393,6 +394,4 @@ span.edit-website {
 .affixBg {
   background: #777777;
 }
-
-
 </style>

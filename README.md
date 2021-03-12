@@ -16,5 +16,8 @@
 > 如果网络允许，可以替换 其中获取favicon的 API 为 Google API  http://www.google.com/s2/favicons?domain=
 > 加载速速更快。
 
-![1](screenshots/1.png)
 <img src="./screenshots/1.png"  width="500" height="313"/>
+<img src="./screenshots/2.png"  width="500" height="313"/>
+
+<img src="./screenshots/11.png"  width="313" height="500"/>
+<img src="./screenshots/22.png"  width="313" height="500"/>

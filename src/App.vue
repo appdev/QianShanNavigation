@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click="pageClicked">
+  <div id="app"  @touchstart="pageClicked" @click="pageClicked">
     <MenuPage/>
     <SearchPage/>
   </div>
