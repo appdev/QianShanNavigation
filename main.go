@@ -9,8 +9,6 @@ import (
 	"goNav/router"
 	"goNav/util"
 	"net/http"
-	"os"
-	"path/filepath"
 )
 
 func main() {
@@ -32,13 +30,4 @@ func main() {
 
 func GetIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{})
-}
-
-func getRootPath() string {
-	ex, err := os.Executable()
-	if err != nil {
-		panic(err)
-	}
-	exPath := filepath.Dir(ex)
-	return exPath + "/"
 }

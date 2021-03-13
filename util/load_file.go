@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"goNav/model"
 	"io/ioutil"
+	"os"
+	"path/filepath"
 )
 
 func LoadJson() []model.WebSite {
 	// 获取 参数，请传入一个文件路径
 
 	// ioutil 方式读取，会一次性读取整个文件，在对大文件处理时会有内存压力
-	fileData, err := ioutil.ReadFile("static/json/userweb.json")
+	fileData, err := ioutil.ReadFile(getRootPath() + "/static/json/userweb.json")
 	dropErr(err)
 	//&model.WebSite{}
 	res := make([]model.WebSite, 10)
@@ -27,4 +29,13 @@ func dropErr(e error) {
 	if e != nil {
 		panic(e)
 	}
+}
+
+func getRootPath() string {
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	return exPath + "/"
 }
