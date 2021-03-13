@@ -23,9 +23,9 @@ func main() {
 
 	router.InitRouter(engine)
 	//加载静态资源，例如网页的css、js
-	engine.Use(middleware.Serve("/", middleware.LocalFile("static", false)))
-	engine.LoadHTMLGlob(getRootPath() + "static/views/*")
-	engine.GET("/", GetIndex)
+	//engine.Use(middleware.Serve("/", middleware.LocalFile("static", false)))
+	//engine.LoadHTMLGlob(getRootPath() + "static/views/*")
+	//engine.GET("/", GetIndex)
 
 	engine.Run(":9080")
 }
