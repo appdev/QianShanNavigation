@@ -23,7 +23,6 @@ func RegisterUser(c *gin.Context, registerInfo LoginReq) {
 	if json := util.LoadJson(); json != nil {
 		for _, k := range json {
 			k.UserID = id
-			k.ShowIcon = true
 			k.Insert()
 		}
 	}

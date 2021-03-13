@@ -13,7 +13,6 @@ type WebSite struct {
 	Name      string    `json:"name"`
 	Weight    int       `json:"weight" gorm:"AUTO_INCREMENT"`
 	UserID    int64     `json:"user_id"`
-	ShowIcon  bool      `json:"showIcon" form:"weight"`
 	CreatedAt time.Time `json:"-"`
 	UpdatedAt time.Time `json:"-"`
 }

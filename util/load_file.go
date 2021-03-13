@@ -2,7 +2,6 @@ package util
 
 import (
 	"encoding/json"
-	"fmt"
 	"goNav/model"
 	"io/ioutil"
 	"os"
@@ -11,14 +10,13 @@ import (
 
 func LoadJson() []model.WebSite {
 	// 获取 参数，请传入一个文件路径
-
+	///Users/lengyue/MyCode/golang/nav/static/static/userweb.json
 	// ioutil 方式读取，会一次性读取整个文件，在对大文件处理时会有内存压力
-	fileData, err := ioutil.ReadFile(getRootPath() + "/static/userweb.json")
+	fileData, err := ioutil.ReadFile(getRootPath() + "static/static/userweb.json")
 	dropErr(err)
 	//&model.WebSite{}
 	res := make([]model.WebSite, 10)
 	if err := json.Unmarshal(fileData, &res); err != nil {
-		fmt.Println(err)
 		return nil
 	}
 	return res
