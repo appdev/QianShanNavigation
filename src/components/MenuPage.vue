@@ -177,6 +177,8 @@ export default {
           this.loginImage = login
           this.showEditBar = false
           this.getJson()
+          localStorage.setItem("lockImage", "")
+          localStorage.setItem("time", "")
           showSuccess("账号已退出")
         } else
           this.showLogin = true
