@@ -140,3 +140,18 @@ func Finds(c *gin.Context) {
 		parameterError(c)
 	}
 }
+
+func GetNewBg(c *gin.Context) {
+	if image, err := util.RootHandler(); err == nil {
+		middleware.ResponseSuccess(c, image)
+	} else {
+		middleware.ResponseError(c, -1, errors.New("获取最新图片失败"))
+	}
+}
+func GetBg(c *gin.Context) {
+	if image, err := util.RandomHandler(); err == nil {
+		middleware.ResponseSuccess(c, image)
+	} else {
+		middleware.ResponseError(c, -1, errors.New("获取最新图片失败"))
+	}
+}

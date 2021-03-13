@@ -1,17 +1,22 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	_ "goNav/api/database"
 	"goNav/middleware"
 	"goNav/router"
+	"goNav/util"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
 func main() {
+
+	res, _ := util.RootHandler()
+	fmt.Println(res)
 	engine := gin.Default()
 	engine.Use(middleware.Cors())
 	engine.Use(gzip.Gzip(gzip.DefaultCompression))
