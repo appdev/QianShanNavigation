@@ -2,7 +2,6 @@ package util
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -20,14 +19,17 @@ type Images struct {
 }
 
 type RandomWallpaper struct {
-	URL  string `json:"url"`
-	Text string `json:"text"`
+	Data struct {
+		Enddate   string `json:"enddate"`
+		URL       string `json:"url"`
+		Copyright string `json:"copyright"`
+	} `json:"data"`
 }
 
 const (
 	host            = `https://cn.bing.com`
 	bingAPI         = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1`
-	randomWallpaper = `http://api.cucldk.com/bing.php?f=json`
+	randomWallpaper = `https://bing.ioliu.cn/v1/rand?type=json`
 )
 
 func RootHandler() (Images, error) {
@@ -59,14 +61,10 @@ func RandomHandler() (Images, error) {
 	defer resp.Body.Close()
 	if body, err := ioutil.ReadAll(resp.Body); err == nil {
 		var res RandomWallpaper
-
-		fmt.Println("_____________________________________________")
-		fmt.Println(string(body))
 		if err := json.Unmarshal(body, &res); err != nil {
 			return Images{}, err
 		}
-		fmt.Println(res)
-		return Images{URL: res.URL, Copyright: res.Text}, nil
+		return Images{URL: res.Data.URL, Copyright: res.Data.Copyright}, nil
 	}
 
 	return Images{}, err
