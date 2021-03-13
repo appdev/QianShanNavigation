@@ -5,7 +5,7 @@ import * as Qs from "qs";
 let baseURL = 'http://127.0.0.1:9080';
 
 
-axios.defaults.headers['Content-Type']='application/json';
+axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.headers.common['token'] = getCookie('token') || '';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.baseURL = baseURL;

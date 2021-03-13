@@ -14,7 +14,7 @@ export default {
   components: {
     SearchPage,
     MenuPage
-  }, methods: {}
+  },
 }
 </script>
 
@@ -100,7 +100,7 @@ a {
   background: #222d46;
 }
 
-body {
-  background: url("https://cn.bing.com//th?id=OHR.HuntsMesa_JA-JP3140979616_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") no-repeat center/cover;
-}
+/*body {*/
+/*  background: url("https://cn.bing.com//th?id=OHR.HuntsMesa_JA-JP3140979616_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") no-repeat center/cover;*/
+/*}*/
 </style>

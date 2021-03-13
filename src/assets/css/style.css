@@ -370,6 +370,9 @@
     .mywth.hidden {
         display: none;
     }
+    .hindColor{
+        display: none;
+    }
 }
 
 @media (max-height: 420px) {

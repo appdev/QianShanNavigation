@@ -3,6 +3,7 @@
     <div class="login_bar">
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
       <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBack">
+      <span :class="{'hindColor':showDes}" @mouseleave="hind" @mouseenter="showText">{{ imageDes }}</span>
     </div>
 
     <div id="menu" @click="hover = true" @mouseover="hover = true"><i></i></div>
@@ -19,7 +20,8 @@
         <li class="title" :class="{'editModeClass':editMode}" @click="addNew('modifyClassification',category[0])">
           {{ category[0] }}
         </li>
-        <li class="edit-website" v-for="(item,index) in category[1]" @click.stop="handleTouchStart(index,ind,item)" :key="index" @mouseleave="leave()"
+        <li class="edit-website" v-for="(item,index) in category[1]" @click.stop="handleTouchStart(index,ind,item)"
+            :key="index" @mouseleave="leave()"
             @mouseenter="enter(index,ind)">
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
@@ -92,12 +94,6 @@ export default {
         this.hover = false
       }
     })
-    window.onresize = () => {
-      return (() => {
-        window.screenWidth = document.body.clientWidth
-        this.screenWidth = window.screenWidth
-      })()
-    }
   },
   data() {
     return {
@@ -108,6 +104,7 @@ export default {
       showLogin: false,
       addNewWeb: false,
       showEditBar: false,
+      showDes: false,
       pinImage: pin,
       addNewType: "",
       showEditItem: -1,
@@ -115,9 +112,9 @@ export default {
       categoryName: "",
       webItem: '',
       loginImage: login,
-      categoryList:"",
-      screenWidth: document.body.clientWidth, // 屏幕尺寸
+      categoryList: "",
       token: "",
+      imageDes: localStorage.getItem("des"),
       top: 13,
     };
   }, methods: {
@@ -140,9 +137,9 @@ export default {
       if (this.editMode) {
         this.showEditItem = index
         this.showEditCategory = ind
-      // } else {
-      //   // e.preventDefault()//添加阻止click事件触发
-      //   window.open(item.url, '_blank')
+        // } else {
+        //   // e.preventDefault()//添加阻止click事件触发
+        //   window.open(item.url, '_blank')
       }
     },
     modify() {
@@ -204,7 +201,7 @@ export default {
           this.originalList.set(category, [item])
         }
       })
-      this.categoryList = JSON.stringify(Array.from( this.originalList.keys() ))
+      this.categoryList = JSON.stringify(Array.from(this.originalList.keys()))
     }, closeAddNewDialog(data, success) {
       this.addNewWeb = data
       if (success) {
@@ -246,6 +243,10 @@ export default {
       this.showEditCategory = -1
     }, refreshBack() {
 
+    }, showText() {
+      this.showDes = true
+    }, hind() {
+      this.showDes = false
     }
   }
 }
@@ -388,21 +389,32 @@ span.edit-website {
 
 
 .login_bar {
-  transform: scale(0.8);
   position: absolute;
-  left: 10px;
+  left: 20px;
   top: 15px;
-  cursor: pointer;
+  align-content: baseline;
   transition: 0.5s;
   display: flex;
   z-index: 100;
   flex-direction: row;
 
   .login {
-    width: 30px;
+    width: 25px;
     height: 30px;
     cursor: pointer;
   }
+
+  span {
+    margin-left: 20px;
+    font-size: 17px;
+    line-height: 30px;
+    font-weight: 500;
+    color: transparent;
+  }
+}
+
+.hindColor {
+  color: white !important;
 }
 
 .editModeClass:hover {

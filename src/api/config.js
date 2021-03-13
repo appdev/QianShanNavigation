@@ -24,3 +24,6 @@ export const addweb = function (params) {
 export const addCategory = function (params) {
     return $postUp('/add/category', params)
 }
+export const getNewImage = function (params) {
+    return $get('/background', params)
+}

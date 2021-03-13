@@ -4,9 +4,7 @@
       <div class="shlogo"></div>
       <div class="sou">
         <form @submit.prevent="submit(q)">
-          <!--          <div class="lg" :class="isGoogle? 'googleSearch':'baiduSearch'" @click="changed"></div>-->
           <div class="lg" @click="changed" :style="{'background': `url(${searchLogo})no-repeat center/cover`}"></div>
-          <!--input class="t" type="text" value="" name="t" hidden-->
           <input class="wd" :class="{'hasText':hasInputText}" type="text" @input="inputFun" placeholder="←点击图标切换搜索引擎"
                  v-model="q"
                  x-webkit-speech lang="zh-CN" @keydown="selectDown($event)"
@@ -34,6 +32,7 @@ import googleLogo from "@/assets/images/g.svg"
 import baiduLogo from "@/assets/images/baidu.svg"
 import {getJsonp} from "@/api";
 import {event} from "@/utils";
+import {getNewImage} from "@/api/config";
 
 export default {
 
@@ -52,6 +51,36 @@ export default {
   props: {
     msg: String
   }, methods: {
+    setBg(urlPah) {
+      document.querySelector('body')
+          .setAttribute('style', 'background:url("' + urlPah + '") no-repeat center/cover; ')
+    }, loadEmptyImage() {
+      let saveImage = localStorage.getItem("image")
+      if (saveImage === '') {
+        let url = "https://cn.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+        this.setBg(url)
+      } else {
+        this.setBg(saveImage)
+      }
+    },
+    loadImage() {
+      let time = ""
+      let saveTime = localStorage.getItem("time")
+      let saveImage = localStorage.getItem("image")
+      if (saveTime === '' || saveImage === '' || time !== saveTime) {
+        getNewImage().then(res => {
+          console.log(res)
+          if (res.code === 200) {
+            localStorage.setItem("time", time)
+            localStorage.setItem("image", res.data.url)
+            localStorage.setItem("des", res.data.copyright)
+            this.setBg(res.data.url)
+          } else {
+            this.loadEmptyImage()
+          }
+        })
+      } else this.loadEmptyImage()
+    },
     changed() {
       this.isGoogle = !this.isGoogle
     }, submit(content) {
@@ -128,7 +157,13 @@ export default {
     searchLogo() {
       return this.isGoogle ? googleLogo : baiduLogo
     }
-  }
+  }, mounted() {
+    this.loadImage()
+  },
+  // 销毁前清除
+  beforeDestroy() {
+    document.querySelector('body').removeAttribute('style')
+  },
 }
 </script>
 
