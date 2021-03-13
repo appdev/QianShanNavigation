@@ -2,7 +2,8 @@
   <div>
     <div class="login_bar">
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
-      <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBack">
+      <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBg">
+      <img v-show="showEditBar" class="login" :src="imagePin" alt="禁止自动切换背景" @click="disAbleChanged"/>
       <span :class="{'hindColor':showDes}" @mouseleave="hind" @mouseenter="showText">{{ imageDes }}</span>
     </div>
 
@@ -10,7 +11,7 @@
     <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} "
          @mouseleave="hover = false">
       <div v-show="showEditBar" class="actionBar" :class="{affixBg:top>20}">
-        <img class="modify" src="../../public/static/modify.svg" @click="modify" alt="自定义模式"/>
+        <img class="modify" :src="editImage" @click="modify" alt="自定义模式"/>
         <img class="modify" :src="pinImage" alt="固定侧边"
              @click="ding"/>
       </div>
@@ -52,7 +53,7 @@
 
     <div id="customize-mode-tips" v-show="editMode">
       <h4>自定义模式</h4>
-      <a href="#" id="finish-customize" style="display: inherit;" @click="exitEdit">退出</a>
+      <a href="#" id="finish-customize" style="display: inherit;" @click="modify">退出</a>
     </div>
     <LoginDialog :show="showLogin" @loginDialogClose="closeLoginDialog"/>
     <AddNew :show="addNewWeb" :destroy-on-close="true"
@@ -68,6 +69,8 @@
 import pin from "../../public/static/pin.svg"
 import pinUp from "../../public/static/pin_up.svg"
 import login from "../../public/static/login.svg"
+import disEdit from "../../public/static/modify.svg"
+import edit from "../../public/static/edit.svg"
 import LoginDialog from "@/components/LoginDialog";
 import AddNew from "@/components/AddWebDialog"
 import {event, getCookie, setCookie, showSuccess, showWarning} from "@/utils";
@@ -94,6 +97,8 @@ export default {
         this.hover = false
       }
     })
+    this.lockImage = localStorage.getItem("lockImage")
+    this.imageDes = localStorage.getItem("des")
   },
   data() {
     return {
@@ -101,11 +106,14 @@ export default {
       originalList: new Map(),
       editMode: false,
       lock: false,
+      lockImage: false,
       showLogin: false,
       addNewWeb: false,
       showEditBar: false,
       showDes: false,
       pinImage: pin,
+      imagePin: pin,
+      editImage: disEdit,
       addNewType: "",
       showEditItem: -1,
       showEditCategory: -1,
@@ -114,12 +122,23 @@ export default {
       loginImage: login,
       categoryList: "",
       token: "",
-      imageDes: localStorage.getItem("des"),
+      imageDes: "",
       top: 13,
     };
   }, methods: {
     getScroll() {
       this.top = this.$refs.container.scrollTop
+    }, disAbleChanged() {
+      this.lockImage = !this.lockImage
+      this.imagePin = this.lockImage ? pinUp : pin
+      if (this.lockImage) {
+        localStorage.setItem("lockImage", this.lockImage)
+        showSuccess("固定使用当前壁纸")
+      } else {
+        showSuccess("已开启每日壁纸自动切换,当前壁纸会在下次刷新后更新")
+        localStorage.setItem("lockImage", "")
+      }
+
     },
     getJson() {
       if (this.token) {
@@ -144,12 +163,11 @@ export default {
     },
     modify() {
       this.editMode = !this.editMode
+
+      this.editImage = this.editMode ? edit : disEdit
     }, ding() {
       this.lock = !this.lock
       this.pinImage = this.lock ? pinUp : pin
-    }, exitEdit() {
-      this.editMode = !this.editMode
-      // post 登陆
     }, addNew(type, name, item) {
       if (type === "login") {
         if (this.token) {
@@ -218,8 +236,9 @@ export default {
         } else {
           showSuccess(res.msg)
         }
-      }).catch(
-          showWarning("服务器访问异常，请检查网络")
+      }).catch(() => {
+            showWarning("服务器访问异常，请检查网络")
+          }
       )
     }, showConfirm(item) {
       this.$confirm({
@@ -241,12 +260,20 @@ export default {
     }, leave() {
       this.showEditItem = -1
       this.showEditCategory = -1
-    }, refreshBack() {
-
+    }, refreshBg() {
+      if (!this.token) {
+        showWarning('这个功能需要登陆才能使用(￣▽￣)"')
+      } else {
+        event.$emit("changeImage", true)
+      }
     }, showText() {
       this.showDes = true
     }, hind() {
       this.showDes = false
+    }
+  }, watch: {
+    lockImage(val) {
+      this.imagePin = val ? pinUp : pin
     }
   }
 }
@@ -351,25 +378,6 @@ img {
   }
 }
 
-span.edit-website {
-  display: none;
-  background-color: #fff;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  border-radius: 2px;
-  line-height: 45px;
-  height: 45px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  opacity: .7;
-  cursor: pointer
-}
-
 .editBox {
   width: 100%;
   display: flex;
@@ -422,6 +430,7 @@ span.edit-website {
 }
 
 .affixBg {
-  background: #07c160;
+  background: white;
+  z-index: 500;
 }
 </style>

@@ -31,8 +31,8 @@
 import googleLogo from "@/assets/images/g.svg"
 import baiduLogo from "@/assets/images/baidu.svg"
 import {getJsonp} from "@/api";
-import {event} from "@/utils";
-import {getNewImage} from "@/api/config";
+import {event, getTime} from "@/utils";
+import {getImage, getNewImage} from "@/api/config";
 
 export default {
 
@@ -51,20 +51,20 @@ export default {
   props: {
     msg: String
   }, methods: {
-    setBg(urlPah) {
+    setBg(urlPah, data) {
       document.querySelector('body')
           .setAttribute('style', 'background:url("' + urlPah + '") no-repeat center/cover; ')
+      document.querySelector('span').innerText = data;
     }, loadEmptyImage() {
-      let saveImage = localStorage.getItem("image")
-      if (saveImage === '') {
-        let url = "https://cn.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
-        this.setBg(url)
-      } else {
-        this.setBg(saveImage)
+      let url = localStorage.getItem("image")
+      let des = localStorage.getItem("des")
+      if (url === '') {
+        url = "https://cn.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
       }
+      this.setBg(url, des)
     },
     loadImage() {
-      let time = ""
+      let time = getTime()
       let saveTime = localStorage.getItem("time")
       let saveImage = localStorage.getItem("image")
       if (saveTime === '' || saveImage === '' || time !== saveTime) {
@@ -74,7 +74,7 @@ export default {
             localStorage.setItem("time", time)
             localStorage.setItem("image", res.data.url)
             localStorage.setItem("des", res.data.copyright)
-            this.setBg(res.data.url)
+            this.setBg(res.data.url, res.data.copyright)
           } else {
             this.loadEmptyImage()
           }
@@ -85,8 +85,8 @@ export default {
       this.isGoogle = !this.isGoogle
     }, submit(content) {
       if (content) {
-        let url = this.isGoogle?"https://www.google.com/search?q=":"https://www.baidu.com/s?wd="
-        window.open(url+ content, '_blank');
+        let url = this.isGoogle ? "https://www.google.com/search?q=" : "https://www.baidu.com/s?wd="
+        window.open(url + content, '_blank');
         this.q = ""
         this.suggestion = []
         this.hasInputText = false
@@ -158,12 +158,33 @@ export default {
       return this.isGoogle ? googleLogo : baiduLogo
     }
   }, mounted() {
-    this.loadImage()
+    let status = localStorage.getItem("lockImage")
+    console.log("status" + status)
+    if (status)
+      this.loadEmptyImage()
+    else {
+      this.loadImage()
+    }
+    event.$on("changeImage", (val) => {//监听aevent事件
+      if (val) {
+        getImage().then(res => {
+          console.log(res.data.copyright)
+          if (res.code === 200) {
+            localStorage.setItem("image", res.data.url)
+            localStorage.setItem("des", res.data.copyright)
+            localStorage.setItem("time", getTime())
+            this.setBg(res.data.url, res.data.copyright)
+          } else {
+            this.loadEmptyImage()
+          }
+        })
+      }
+    })
   },
   // 销毁前清除
-  beforeDestroy() {
-    document.querySelector('body').removeAttribute('style')
-  },
+  // beforeDestroy() {
+  //   document.querySelector('body').removeAttribute('style')
+  // },
 }
 </script>
 

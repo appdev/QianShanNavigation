@@ -27,3 +27,7 @@ export const addCategory = function (params) {
 export const getNewImage = function (params) {
     return $get('/background', params)
 }
+
+export const getImage = function (params) {
+    return $get('/background/change', params)
+}
