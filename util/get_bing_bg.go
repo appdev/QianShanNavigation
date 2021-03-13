@@ -19,17 +19,14 @@ type Images struct {
 }
 
 type RandomWallpaper struct {
-	Data struct {
-		Enddate   string `json:"enddate"`
-		URL       string `json:"url"`
-		Copyright string `json:"copyright"`
-	} `json:"data"`
+	URL  string `json:"url"`
+	Text string `json:"text"`
 }
 
 const (
 	host            = `https://cn.bing.com`
 	bingAPI         = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1`
-	randomWallpaper = `https://bing.ioliu.cn/v1/rand?type=json`
+	randomWallpaper = `http://api.cucldk.com/bing.php?f=json&key=%E9%A3%8E%E6%99%AF`
 )
 
 func RootHandler() (Images, error) {
@@ -61,10 +58,11 @@ func RandomHandler() (Images, error) {
 	defer resp.Body.Close()
 	if body, err := ioutil.ReadAll(resp.Body); err == nil {
 		var res RandomWallpaper
+
 		if err := json.Unmarshal(body, &res); err != nil {
 			return Images{}, err
 		}
-		return Images{URL: res.Data.URL, Copyright: res.Data.Copyright}, nil
+		return Images{URL: res.URL, Copyright: res.Text}, nil
 	}
 
 	return Images{}, err
