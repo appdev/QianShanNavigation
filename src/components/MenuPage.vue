@@ -137,6 +137,7 @@ export default {
       } else {
         showSuccess("已开启每日壁纸自动切换,当前壁纸会在下次刷新后更新")
         localStorage.setItem("lockImage", "")
+        localStorage.setItem("time", "")
       }
 
     },

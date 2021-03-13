@@ -64,10 +64,14 @@ export default {
       this.setBg(url, des)
     },
     loadImage() {
+      console.log("111")
       let time = getTime()
       let saveTime = localStorage.getItem("time")
       let saveImage = localStorage.getItem("image")
+      console.log(time)
+      console.log(saveTime)
       if (saveTime === '' || saveImage === '' || time !== saveTime) {
+        console.log("111")
         getNewImage().then(res => {
           console.log(res)
           if (res.code === 200) {
@@ -159,7 +163,6 @@ export default {
     }
   }, mounted() {
     let status = localStorage.getItem("lockImage")
-    console.log("status" + status)
     if (status)
       this.loadEmptyImage()
     else {
@@ -172,7 +175,7 @@ export default {
           if (res.code === 200) {
             localStorage.setItem("image", res.data.url)
             localStorage.setItem("des", res.data.copyright)
-            localStorage.setItem("time", getTime())
+            localStorage.setItem("time", "")
             this.setBg(res.data.url, res.data.copyright)
           } else {
             this.loadEmptyImage()
