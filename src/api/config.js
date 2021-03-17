@@ -31,3 +31,6 @@ export const getNewImage = function (params) {
 export const getImage = function (params) {
     return $get('/background/change', params)
 }
+export const getFavicon = function (params) {
+    return $get('/favicon', params)
+}

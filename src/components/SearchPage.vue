@@ -9,12 +9,12 @@
                  v-model="q"
                  x-webkit-speech lang="zh-CN" @keydown="selectDown($event)"
                  autocomplete="off">
-          <img src="../../public/static/search.svg"/>
+          <img src="https://static.apkdv.com/image/search.svg"/>
         </form>
         <div id="word" v-show="showSuggestion">
           <li v-for="(item, index)  in suggestion" :key="item.id" @click="submit(item)"
               :class="{'selectItem':index === selectSuggestion}">
-            <img src="../../public/static/search.svg"/>
+            <img src="https://static.apkdv.com/image/search.svg"/>
             {{ item }}
           </li>
         </div>
@@ -28,11 +28,10 @@
 </template>
 
 <script>
-import googleLogo from "@/assets/images/g.svg"
-import baiduLogo from "@/assets/images/baidu.svg"
 import {getJsonp} from "@/api";
 import {event, getTime} from "@/utils";
 import {getImage, getNewImage} from "@/api/config";
+import {baiduLogo, googleLogo} from "@/utils/image";
 
 export default {
 
@@ -64,16 +63,11 @@ export default {
       this.setBg(url, des)
     },
     loadImage() {
-      console.log("111")
       let time = getTime()
       let saveTime = localStorage.getItem("time")
       let saveImage = localStorage.getItem("image")
-      console.log(time)
-      console.log(saveTime)
       if (saveTime === '' || saveImage === '' || time !== saveTime) {
-        console.log("111")
         getNewImage().then(res => {
-          console.log(res)
           if (res.code === 200) {
             localStorage.setItem("time", time)
             localStorage.setItem("image", res.data.url)
@@ -171,7 +165,6 @@ export default {
     event.$on("changeImage", (val) => {//监听aevent事件
       if (val) {
         getImage().then(res => {
-          console.log(res.data.copyright)
           if (res.code === 200) {
             localStorage.setItem("image", res.data.url)
             localStorage.setItem("des", res.data.copyright)
@@ -196,11 +189,11 @@ export default {
 @import "../assets/css/style.css";
 
 .googleSearch {
-  background: url("~@/assets/images/g.svg") no-repeat center/cover;
+  background: url("https://static.apkdv.com/image/g.svg") no-repeat center/cover;
 }
 
 .baiduSearch {
-  background: url("~@/assets/images/baidu.svg") no-repeat center/cover;
+  background: url("https://static.apkdv.com/image/baidu.svg") no-repeat center/cover;
 }
 
 .selectItem {

@@ -4,11 +4,6 @@ import {message} from "ant-design-vue";
 
 export var event = new Vue();
 
-
-export const jsonFile = () => {
-    require('../../public/static/userweb.json')
-}
-
 /**
  * @msg: 从cookie获取数据
  * @param {string} key
@@ -46,7 +41,7 @@ export const showSuccess = (val) => {
     message.success(val);
 }
 
-export const getTime = function() {
+export const getTime = function () {
     let date = new Date();
     let month = date.getMonth() + 1;
     let strDate = date.getDate();
@@ -56,5 +51,5 @@ export const getTime = function() {
     if (strDate >= 0 && strDate <= 9) {
         strDate = "0" + strDate;
     }
-    return  date.getFullYear()  + month  + strDate;
+    return date.getFullYear() + month + strDate;
 };

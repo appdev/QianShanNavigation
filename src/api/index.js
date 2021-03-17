@@ -2,7 +2,8 @@ import axios from 'axios'
 import {getCookie} from "@/utils";
 import * as Qs from "qs";
 
-let baseURL = window.location.href;
+export const baseURL = 'http://127.0.0.1:9080';
+export const EmptyUrl = 'https://static.apkdv.com/image/web.png!/format/webp/lossless/true';
 
 
 axios.defaults.headers['Content-Type'] = 'application/json';

@@ -141,7 +141,6 @@ export default {
       this.showStatus = false
       this.$emit('addWebDialogClose', false, success)//子组件对openStatus修改后向父组件发送事件通知
     }, changedValue(e) {
-      console.log(e)
     }, handleChange(value) {
       this.webObj.category = this.categoryArray[value]
     },

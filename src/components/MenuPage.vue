@@ -2,18 +2,15 @@
   <div>
     <div class="login_bar">
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
-      <img src="../../public/static/refresh.svg" alt="切换背景" class="login" @click="refreshBg">
+      <img src="https://static.apkdv.com/image/refresh.webp" alt="切换背景" class="login" @click="refreshBg">
       <img v-show="showEditBar" class="login" :src="imagePin" alt="禁止自动切换背景" @click="disAbleChanged"/>
       <span :class="{'hindColor':showDes}" @mouseleave="hind" @mouseenter="showText">{{ imageDes }}</span>
     </div>
 
-    <div id="menu" @click="hover = true" @mouseover="hover = true"><i></i></div>
-    <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} "
-         @mouseleave="hover = false">
-      <div v-show="showEditBar" class="actionBar" :class="{affixBg:top>20}">
-        <img class="modify" :src="editImage" @click="modify" alt="自定义模式"/>
-        <img class="modify" :src="pinImage" alt="固定侧边"
-             @click="ding"/>
+    <div id="menu" :class="{'on':hover}" @click="openOrClose" @mouseover="hover = true"><i></i></div>
+    <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} ">
+      <div class="actionBar" v-show="showEditBar" :class="{affixBg:top>20}">
+        <img class="modify editSize" v-show="showEditBar" :src="editImage" @click="modify" alt="自定义模式"/>
       </div>
 
       <ul v-for="(category,ind) in originalList" :key="ind">
@@ -26,8 +23,8 @@
             @mouseenter="enter(index,ind)">
           <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
              target="_blank">
-            <img
-                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>
+            <img :src="item.favicon"
+                 onerror="javascript:this.src='https://static.apkdv.com/image/web.png!/format/webp/lossless/true';"/>
             {{ item.name }}
             <!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
           </a>
@@ -38,7 +35,7 @@
 
         </li>
         <li v-show="editMode" @click="addNew('addSite',category[0])"><a href="#" title="添加新站点">
-          <img src="../../public/static/add.svg"/>
+          <img src="https://static.apkdv.com/image/add.svg"/>
           添加站点</a>
         </li>
         <!------>
@@ -46,7 +43,7 @@
       <ul v-show="editMode">
         <!------>
         <li class="addNew" @click="addNew('addClassification')"><a href="#" title="添加新分类">
-          <img class="addCategory" src="../../public/static/add.svg"/> 添加新分类</a>
+          <img class="addCategory" src="https://static.apkdv.com/image/add.svg"/> 添加新分类</a>
         </li>
       </ul>
     </div>
@@ -66,17 +63,12 @@
 </template>
 
 <script>
-import pin from "../../public/static/pin.svg"
-import pinUp from "../../public/static/pin_up.svg"
-import login from "../../public/static/login.svg"
-import disEdit from "../../public/static/modify.svg"
-import edit from "../../public/static/edit.svg"
 import LoginDialog from "@/components/LoginDialog";
 import AddNew from "@/components/AddWebDialog"
 import {event, getCookie, setCookie, showSuccess, showWarning} from "@/utils";
 import {deleteItem, getUserWebList} from "@/api/config";
-import logout from "../../public/static/login_out.svg";
 import axios from "axios";
+import {disEdit, edit, login, logout, pin, pinUp} from "@/utils/image";
 
 export default {
 
@@ -92,11 +84,11 @@ export default {
     if (this.token) {
       this.loginImage = logout
     } else this.loginImage = login
-    event.$on("searchPageClick", (val) => {//监听aevent事件
-      if (val) {
-        this.hover = false
-      }
-    })
+    // event.$on("searchPageClick", (val) => {//监听aevent事件
+    //   if (val) {
+    //     this.hover = false
+    //   }
+    // })
     this.lockImage = localStorage.getItem("lockImage")
     this.imageDes = localStorage.getItem("des")
   },
@@ -126,6 +118,9 @@ export default {
       top: 13,
     };
   }, methods: {
+    openOrClose() {
+      this.hover = !this.hover
+    },
     getScroll() {
       this.top = this.$refs.container.scrollTop
     }, disAbleChanged() {
@@ -139,7 +134,6 @@ export default {
         localStorage.setItem("lockImage", "")
         localStorage.setItem("time", "")
       }
-
     },
     getJson() {
       if (this.token) {
@@ -150,7 +144,7 @@ export default {
     }, accessToLocalData() {
       axios.create({
         baseURL: ""
-      }).get("/static/userweb.json").then(res => {
+      }).get("/json/userweb.json").then(res => {
         this.makeData(res.data)
       })
     }, handleTouchStart(index, ind) {
@@ -161,10 +155,13 @@ export default {
         //   // e.preventDefault()//添加阻止click事件触发
         //   window.open(item.url, '_blank')
       }
+    }, errorImg() {
+      let img = event.srcElement;
+      img.src = "images/defaultImg.png";
+      img.onerror = null; //解绑onerror事件
     },
     modify() {
       this.editMode = !this.editMode
-
       this.editImage = this.editMode ? edit : disEdit
     }, ding() {
       this.lock = !this.lock
@@ -337,10 +334,18 @@ img {
   flex-direction: row;
 
   .modify {
-    height: 20px;
-    width: 20px;
     margin-top: 13px;
     cursor: pointer;
+  }
+
+  .dingSize {
+    height: 25px;
+    width: 25px;
+  }
+
+  .editSize {
+    height: 30px;
+    width: 30px;
   }
 }
 
@@ -411,7 +416,7 @@ img {
 
   .login {
     width: 25px;
-    height: 30px;
+    height: 25px;
     cursor: pointer;
   }
 
@@ -433,7 +438,7 @@ img {
 }
 
 .affixBg {
-  background: white;
+  background: #1D3B55;
   z-index: 500;
 }
 </style>
