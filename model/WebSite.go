@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	orm "goNav/api/database"
 	"time"
 )
@@ -11,6 +10,7 @@ type WebSite struct {
 	Url       string    `json:"url"`
 	Category  string    `json:"category"`
 	Name      string    `json:"name"`
+	Favicon   string    `json:"favicon" gorm:"default:true"`
 	Weight    int       `json:"weight" gorm:"AUTO_INCREMENT"`
 	UserID    int64     `json:"user_id"`
 	CreatedAt time.Time `json:"-"`
@@ -89,8 +89,6 @@ func (webSite *WebSite) Destroy(id int64) (Result WebSite, err error) {
 }
 
 func (webSite *WebSite) ChangeCategory(newCategory string) (err error) {
-	fmt.Println(webSite)
-	fmt.Println(newCategory)
 	if err = orm.DB.Model(WebSite{}).Where("category = ? AND user_id = ?", webSite.Category, webSite.UserID).Updates(WebSite{Category: newCategory}).Error; err != nil {
 		return
 	}

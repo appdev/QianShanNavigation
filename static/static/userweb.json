@@ -3,486 +3,561 @@
     "url": "https://www.baidu.com/",
     "category": "常用·工作",
     "name": "百度",
+    "favicon": "https://www.baidu.com/favicon.ico",
     "weight": 10
   },
   {
     "url": "https://www.google.com",
     "category": "常用·工作",
     "name": "谷歌",
+    "favicon": "https://www.google.com/favicon.ico",
     "weight": 10
   },
   {
     "url": "https://wx.qq.com/",
     "category": "常用·工作",
     "name": "网页版微信",
+    "favicon": "https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico",
     "weight": 10
   },
   {
     "url": "https://www.apkdv.com/",
     "category": "常用·工作",
     "name": "Apkdv",
+    "favicon": "https://www.apkdv.com/favicon.ico",
     "weight": 10
   },
   {
     "url": "https://mail.qq.com/",
     "category": "常用·工作",
     "name": "QQ邮箱",
+    "favicon": "https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_16h.png",
     "weight": 11
   },
   {
     "url": "https://mail.google.com",
     "category": "常用·工作",
     "name": "Gmail",
+    "favicon": "https://mail.google.com/favicon.ico",
     "weight": 11
   },
   {
     "url": "http://douban.fm/",
     "category": "常用·工作",
     "name": "豆瓣电台",
+    "favicon": "http://douban.fm/favicon.ico",
     "weight": 11
   },
   {
     "url": "http://www.163.com/",
     "category": "常用·工作",
     "name": "网易",
-    "weight": 11
+    "favicon": "http://www.163.com/favicon.ico",
+    "weiser_id": 0
   },
   {
     "url": "http://dict.youdao.com/",
     "category": "常用·工作",
     "name": "有道词典",
+    "favicon": "https://shared.ydstatic.com/images/favicon.ico",
     "weight": 11
   },
   {
-    "url": "http://www.zhihu.com/",
+    "url": "http:ihu.com/",
     "category": "常用·社交",
     "name": "知乎",
+    "favicon": "https://static.zhihu.com/heifetz/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://weibo.com/",
     "category": "常用·社交",
-    "name": "微博",
+    "name": "微",
+    "favicon": "http://weibo.com/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://www.douban.com/",
     "category": "常用·社交",
     "name": "豆瓣",
+    "favicon": "http://www.douban.com/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://xueqiu.com/",
     "category": "常用·社交",
     "name": "雪球",
+    "favicon": "http://assets.imedao.com/images/favicon.png",
     "weight": 20
   },
   {
     "url": "http://www.newsmth.net/",
     "category": "常用·社交",
     "name": "水木社区",
+    "favicon": "http://static.mysmth.net/nForum/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://www.jianshu.com/",
     "category": "常用·社交",
     "name": "简书",
+    "favicon": "https://cdn2.jianshu.io/assets/favicons/favicon-e743bfb1821442341c3ab15bdbe804f7ad97676bd07a770ccc9483473aa76f06.ico",
     "weight": 20
   },
   {
     "url": "http://www.hupu.com/",
     "category": "常用·社交",
     "name": "虎扑",
+    "favicon": "http://w1.hoopchina.com.cn/images/pc/old/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://www.chiphell.com/",
     "category": "常用·社交",
     "name": "Chiphell",
+    "favicon": "htww.chiphell.com/favicon.ico",
     "weight": 20
   },
   {
     "url": "http://www.v2ex.com/",
     "category": "常用·社交",
     "name": "V2EX",
-    "weight": 20
+    "favicon": "http://www.v2ex.com/static/icon-192.png",
+    "weight": 20,
+    "use": 0
   },
   {
     "url": "http://news.baidu.com/",
     "category": "新闻",
     "name": "百度新闻",
+    "favicon": "http://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/favicon.ico",
     "weight": 30
   },
   {
     "url": "http://www.xinhuanet.com/",
     "category": "新闻",
     "name": "新华网",
+    "favicon": "http://www.xinhuanet.com/favicon.ico",
     "weight": 30
   },
   {
     "url": "http://www.people.com.cn/",
     "category": "新闻",
     "name": "人民网",
+    "favicon": "http://www.people.com.cn/favicon.ico",
     "weight": 30
   },
   {
-    "url": "https://36kr.com/",
+    "url": "https://www.36kr.com/",
     "category": "新闻",
     "name": "36氪",
+    "favicon": "https://www.36kr.com/favicon.ico",
     "weight": 30
   },
   {
     "url": "http://www.thepaper.cn/",
     "category": "新闻",
     "name": "澎湃新闻",
+    "favicon": "http://www.thepaper.cn/favicon.ico",
     "weight": 31
   },
   {
-    "url": "http://www.ftchinese.com/",
+    "url": "https://ftchinese.com/",
     "category": "新闻",
     "name": "FT中文网",
+    "favicon": "https://dhgxl8qk9zgzr.cloudfront.net/img/friend-share-icon.jpg",
     "weight": 31
   },
   {
     "url": "http://www.qdaily.com/",
     "category": "新闻",
     "name": "好奇心日报",
+    "favicon": "http://www.qdaily.com/favicon.ico",
     "weight": 31
   },
   {
     "url": "http://www.jiemian.com/",
     "category": "新闻",
     "name": "界面",
+    "favicon": "https://www.jiemian.com/favicon.ico",
     "weight": 31
   },
   {
     "url": "http://www.autohome.com.cn/",
     "category": "新闻",
     "name": "汽车之家",
+    "favicon": "http://www.autohome.com.cn/favicon.ico",
     "weight": 31
   },
   {
     "url": "http://www.youku.com/",
     "category": "视频",
     "name": "优酷",
+    "favicon": "http://www.youku.com/favicon.ico",
     "weight": 250
   },
   {
     "url": "http://www.iqiyi.com/",
     "category": "视频",
     "name": "爱奇艺",
+    "favicon": "http://www.iqiyipic.com/common/fix/128-128-logo.png",
     "weight": 250
   },
   {
     "url": "http://tv.sohu.com/",
     "category": "视频",
     "name": "搜狐视频",
+    "favicon": "https://css.tv.itc.cn/channel/v1/images/logo.png",
     "weight": 250
   },
   {
     "url": "http://v.qq.com/",
     "category": "视频",
     "name": "腾讯视频",
+    "favicon": "http://v.qq.com/favicon.ico",
     "weight": 250
   },
   {
-    "url": "http://www.letv.com/",
+    "url": "http://www.letv.ccategory",
     "category": "视频",
     "name": "乐视",
+    "favicon": "http://www.letv.com/favicon.ico",
     "weight": 250
   },
   {
     "url": "http://www.pptv.com/",
     "category": "视频",
     "name": "PPTV",
+    "favicon": "https://sr1.pplive.cn/mcms/nav/images/favicon.ico",
     "weight": 250
   },
   {
     "url": "http://www.douyutv.com/",
     "category": "视频",
     "name": "斗鱼TV",
+    "favicon": "http://www.douyutv.com/favicon.ico",
     "weight": 270
   },
   {
     "url": "http://www.zhanqi.tv/",
     "category": "视频",
     "name": "战旗TV",
+    "favicon": "http://www.zhanqi.tv/favicon.ico",
     "weight": 270
   },
   {
     "url": "http://www.huya.com/",
     "category": "视频",
     "name": "虎牙TV",
+    "favicon": "http://www.huya.com/favicon.ico",
     "weight": 270
   },
   {
     "url": "https://www.taobao.com/",
     "category": "购物",
     "name": "淘宝",
+    "favicon": "https://img.alicdn.com/tps/i3/T1OjaVFl4dXXa.JOZB-114-114.png",
     "weight": 280
   },
   {
     "url": "https://www.tmall.com/",
     "category": "购物",
     "name": "天猫",
+    "favicon": "https://img.alicdn.com/tfs/TB1XlF3RpXXXXc6XXXXXXXXXXXX-16-16.png",
     "weight": 280
   },
   {
     "url": "http://www.jd.com/",
     "category": "购物",
     "name": "京东",
+    "favicon": "http://www.jd.com/favicon.ico",
     "weight": 280
   },
   {
     "url": "http://www.dangdang.com/",
     "category": "购物",
     "name": "当当",
+    "favicon": "http://www.dangdang.com/Standard/Framework/Extend/hosts/favicon.ico",
     "weight": 280
   },
   {
     "url": "http://www.vip.com/",
     "category": "购物",
     "name": "唯品会",
+    "favicon": "htw.vip.com/favicon.ico",
     "weight": 280
   },
   {
     "url": "http://www.suning.com/",
     "category": "购物",
     "name": "苏宁易购",
+    "favicon": "http://www.suning.com/favicon.ico",
     "weight": 280
   },
   {
     "url": "http://www.yhd.com/",
     "category": "购物",
     "name": "1号店",
+    "favicon": "http://www.yhd.com/yhdmember/favicon.ico",
     "weight": 280
   },
   {
     "url": "http://www.mi.com/",
     "category": "购物",
     "name": "小米网",
+    "favicon": "http://s01.mifile.cn/favicon.ico",
     "weight": 281
   },
   {
     "url": "http://www.mogujie.com/",
     "category": "购物",
     "name": "蘑菇街",
+    "favicon": "https://s10.mogucdn.com/mlcdn/c45406/170401_16fj5k6k4174bfd21d03a4gf6a7hg_48x48.png",
     "weight": 281
   },
   {
     "url": "http://open.163.com/",
     "category": "发现",
     "name": "网易公开课",
-    "weight": 120
-  },
-  {
-    "url": "http://www.next.36kr.com/posts",
-    "category": "发现",
-    "name": "Next",
+    "favicon": "http://c.open.163.com/favicon.ico",
     "weight": 120
   },
   {
     "url": "http://itjuzi.com/",
     "category": "发现",
     "name": "IT桔子",
+    "favicon": "https://cdn.itjuzi.com/assets/front/favicon.png",
     "weight": 120
   },
   {
     "url": "http://www.gewara.com/",
     "category": "发现",
     "name": "格瓦拉",
+    "favicon": "http://www.gewara.com/favicon.ico",
     "weight": 120
   },
   {
     "url": "http://www.app-echo.com/",
     "category": "发现",
     "name": "Echo回声",
+    "favicon": "http://www.app-echo.com/favicon.ico?v=ccb7e6d",
     "weight": 120
   },
   {
     "url": "http://www.51talk.com/",
     "category": "发现",
     "name": "51talk",
+    "favicon": "https://static.51talk.com/static_assets/www/html/project/2018/www_new/images/favicon.ico?v=web202010101126",
     "weight": 120
   },
   {
     "url": "http://www.wolframalpha.com/",
     "category": "发现",
     "name": "Wolframalpha",
+    "favicon": "https://www.wolframalpha.com/_next/static/images/favicon_fzx75d1e.ico",
     "weight": 121
   },
   {
     "url": "https://duckduckgo.com/",
     "category": "发现",
     "name": "Duckduckgo",
-    "weight": 121
+    "favicon": "https://duckduckgo.com/favicon.ico",
+    "ight": 121
   },
   {
     "url": "https://zh.wikipedia.org",
     "category": "发现",
     "name": "Wikipedia",
+    "favicon": "https://zh.wikipedia.org/static/favicon/wikipedia.ico",
     "weight": 121
   },
   {
     "url": "http://www.qyer.com/",
     "category": "商旅",
     "name": "穷游",
+    "favicon": "http://www.qyer.com/favicon.ico",
     "weight": 170
   },
   {
     "url": "http://www.mafengwo.cn/",
     "category": "商旅",
     "name": "蚂蜂窝",
+    "favicon": "http://www.mafengwo.cn/favicon.ico",
     "weight": 170
   },
   {
     "url": "http://breadtrip.com/",
     "category": "商旅",
     "name": "面包旅行",
+    "favicon": "http://qiniustatic.breadtrip.com/static/img/favicon.png",
     "weight": 170
   },
   {
     "url": "http://www.qunar.com/",
     "category": "商旅",
     "name": "去哪儿",
+    "favicon": "http://www.qunar.com/favicon.ico",
     "weight": 170
   },
   {
     "url": "http://www.ctrip.com/",
     "category": "商旅",
     "name": "携程",
+    "favicon": "http://www.ctrip.com/favicon.ico",
     "weight": 170
   },
   {
     "url": "http://www.tianxun.com/",
     "category": "商旅",
     "name": "天巡",
+    "favicon": "http://www.tianxun.com/favicon.ico",
     "weight": 170
   },
   {
     "url": "http://www.12306.cn/",
     "category": "商旅",
     "name": "12306",
-    "weight": 170
+    "favicon": "http://www.12306.cn/images/favicon.ico",
+    "weight": 0
   },
   {
     "url": "http://www.booking.com/",
     "category": "商旅",
     "name": "Booking",
+    "favicon": "https://cf.bstatic.com/static/img/b25logo/favicon/ebc77706da3aae4aee7b05dadf182390f0d26d11.ico",
     "weight": 170
   },
   {
     "url": "http://www.zuche.com/",
     "category": "商旅",
     "name": "神州租车",
+    "favicon": "http://www.zuche.com/favicon.ico",
     "weight": 171
   },
   {
-    "url": "http://www.cmbchina.com/",
+    "url": "http://www.na.com/",
     "category": "银行",
     "name": "招商银行",
+    "favicon": "http://www.cmbchina.com/cmb.ico",
     "weight": 230
   },
   {
     "url": "http://www.icbc.com.cn/",
     "category": "银行",
     "name": "工商银行",
+    "favicon": "http://www.icbc.com.cn/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.ccb.com/",
     "category": "银行",
     "name": "建设银行",
+    "favicon": "http://www.ccb.com/favicon.ico",
     "weight": 2301
   },
   {
     "url": "http://www.abchina.com/cn/",
     "category": "银行",
     "name": "农业银行",
+    "favicon": "http://www.abchina.com/cn/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.boc.cn/",
     "category": "银行",
     "name": "中国银行",
+    "favicon": "http://www.boc.cn/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.bankcomm.com/",
     "category": "银行",
     "name": "交通银行",
+    "favicon": "http://www.bankcomm.com/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.cgbchina.com.cn/",
     "category": "银行",
     "name": "广发银行",
+    "favicon": "http://www.cgbchina.com.cn/static/CN/images/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.cmbc.com.cn/",
     "category": "银行",
     "name": "民生银行",
+    "favicon": "http://www.cmbc.com.cn/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://bank.pingan.com/",
     "category": "银行",
     "name": "平安银行",
+    "favicon": "http://bank.pingan.com/favicon.ico",
     "weight": 230
   },
   {
     "url": "http://www.meituan.com",
     "category": "常用·生活",
     "name": "美团",
+    "favicon": "http://www.meituan.com/favicon.ico",
     "weight": 240
   },
   {
     "url": "https://www.smzdm.com/",
     "category": "常用·生活",
     "name": "什么值得买",
-    "weight": 240
+    "favicon": "https://www.smzdm.com/favicon.ico?v=201906300250",
+    "weight": 2401
   },
   {
     "url": "http://www.dianping.com/",
     "category": "常用·生活",
     "name": "大众点评",
+    "favicon": "http://www.dpfile.com/app/pc-common/dp_favicon.a4af753914321c8e82e402e2b4be01d7.ico",
     "weight": 240
   },
   {
     "url": "http://www.nuomi.com/",
     "category": "常用·生活",
     "name": "糯米",
+    "favicon": "http://www.nuomi.com/favicon.ico",
     "weight": 240
   },
   {
     "url": "http://ele.me/",
     "category": "常用·生活",
     "name": "饿了么",
+    "favicon": "http://cube.elemecdn.com/c/54/38fa90be5da041bbec3945fb82c00png.png",
     "weight": 240
   },
   {
     "url": "http://waimai.meituan.com/",
     "category": "常用·生活",
     "name": "美团外卖",
+    "favicon": "http://p1.meituan.net/travelcube/e3e5824a81a19bd254e586be3192d0c01883.png",
     "weight": 240
   },
   {
     "url": "http://waimai.baidu.com/",
     "category": "常用·生活",
     "name": "百度外卖",
+    "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true",
     "weight": 240
   },
   {
     "url": "http://58.com",
     "category": "常用·生活",
     "name": "58同城",
-    "weight": 240
+    "favicon": "http://58.com/favicon.ico",
+    "weight": 241
   },
   {
-    "url": "http://ganji.com",
+    "url ": "http: //ganji.com",
     "category": "常用·生活",
     "name": "赶集",
+    "favicon": "http://ganji.com/favicon.ico",
     "weight": 240
   }
 ]

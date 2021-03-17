@@ -6,6 +6,7 @@ import (
 	"goNav/middleware"
 	"goNav/model"
 	"goNav/util"
+	"net/http"
 	"strconv"
 )
 
@@ -23,12 +24,15 @@ type Category struct {
 	OldCategory string `json:"oldCategory" form:"category" binding:"required"`
 }
 
+const ErrorImage = "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+
 func AddWeb(c *gin.Context) {
 	addWeb, userId, err := checkData(c)
 	if err != nil {
 		return
 	}
 	webSite := model.WebSite{Url: addWeb.Url, UserID: userId, Name: addWeb.Name, Category: addWeb.Category}
+	webSite.Favicon = util.Fetch(addWeb.Url)
 	id, err := webSite.Insert()
 	if err != nil {
 		middleware.ResponseError(c, -1, errors.New("添加失败"))
@@ -81,6 +85,7 @@ func Update(c *gin.Context) {
 	}
 
 	webSite := model.WebSite{Url: addWeb.Url, Name: addWeb.Name, Category: addWeb.Category}
+	webSite.Favicon = util.Fetch(addWeb.Url)
 	_, err = webSite.Update(addWeb.Id)
 	if err != nil {
 		middleware.ResponseError(c, -1, errors.New("修改失败"))
@@ -154,4 +159,31 @@ func GetBg(c *gin.Context) {
 	} else {
 		middleware.ResponseError(c, -1, errors.New("获取最新图片失败"))
 	}
+}
+func Favicon(c *gin.Context) {
+	if requestUrl, ok := c.GetQuery("url"); ok {
+
+		//if urlObj, parseErr := url.Parse(requestUrl); parseErr == nil {
+		getFaviconByNet(c, requestUrl)
+		//if data, err := model.FindOne(urlObj.Host); err == nil {
+		//	if data.Favicon == ErrorImage {
+		//		getFaviconByNet(c,parseErr,requestUrl,urlObj)
+		//	} else {
+		//		c.String(http.StatusOK, data.Favicon)
+		//	}
+		//} else {
+		//	getFaviconByNet(c, err, requestUrl, urlObj)
+		//}
+		//} else {
+		//	c.String(http.StatusOK, ErrorImage)
+		//}
+	} else {
+		c.String(http.StatusOK, ErrorImage)
+	}
+
+}
+
+func getFaviconByNet(c *gin.Context, requestUrl string) {
+	iconUrl := util.Fetch(requestUrl)
+	c.String(http.StatusOK, iconUrl)
 }
