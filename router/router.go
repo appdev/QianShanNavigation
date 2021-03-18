@@ -18,7 +18,7 @@ func InitRouter(router *gin.Engine) *gin.Engine {
 	router.POST("/update/category", middleware.JWTAuth(), controller.UpdateCategory)
 	router.GET("/finds", middleware.JWTAuth(), controller.Finds)
 	router.GET("/background", controller.GetNewBg)
-	router.GET("/background/change", controller.GetBg)
-	router.GET("/favicon", controller.Favicon)
+	router.GET("/background/change", middleware.JWTAuth(), controller.GetBg)
+	router.GET("/favicon", middleware.JWTAuth(), controller.Favicon)
 	return router
 }

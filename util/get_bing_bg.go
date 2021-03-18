@@ -2,8 +2,11 @@ package util
 
 import (
 	"encoding/json"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/andelf/go-curl"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 type Response struct {
@@ -24,9 +27,10 @@ type RandomWallpaper struct {
 }
 
 const (
-	host            = `https://cn.bing.com`
-	bingAPI         = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1`
-	randomWallpaper = `http://api.cucldk.com/bing.php?f=json&key=%E9%A3%8E%E6%99%AF`
+	host    = `https://cn.bing.com`
+	bingAPI = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1`
+	//randomWallpaper = `http://api.cucldk.com/bing.php?f=json&key=%E9%A3%8E%E6%99%AF`
+	randomWallpaper = `https://source.unsplash.com/random/1920x1080`
 )
 
 func RootHandler() (Images, error) {
@@ -50,20 +54,24 @@ func RootHandler() (Images, error) {
 }
 
 func RandomHandler() (Images, error) {
+	easy := curl.EasyInit()
+	defer easy.Cleanup()
+	easy.Setopt(curl.OPT_URL, randomWallpaper)
 
-	resp, err := http.Get(randomWallpaper)
-	if err != nil {
-		return Images{}, err
-	}
-	defer resp.Body.Close()
-	if body, err := ioutil.ReadAll(resp.Body); err == nil {
-		var res RandomWallpaper
-
-		if err := json.Unmarshal(body, &res); err != nil {
-			return Images{}, err
+	image := Images{}
+	// make a callback function
+	bgImage := func(buf []byte, userdata interface{}) bool {
+		if doc, err := goquery.NewDocumentFromReader(strings.NewReader(string(buf))); err == nil {
+			href, err := doc.Find("a").First().Attr("href")
+			if err {
+				image.URL = href
+			}
 		}
-		return Images{URL: res.URL, Copyright: res.Text}, nil
+		return true
 	}
+	_ = easy.Setopt(curl.OPT_WRITEFUNCTION, bgImage)
 
-	return Images{}, err
+	_ = easy.Perform()
+
+	return image, nil
 }
