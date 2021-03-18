@@ -147,7 +147,7 @@ export default {
     }, accessToLocalData() {
       axios.create({
         baseURL: ""
-      }).get("https://static.apkdv.com/start/json/userweb.json").then(res => {
+      }).get("/start/json/userweb.json").then(res => {
         this.makeData(res.data)
       })
     }, handleTouchStart(index, ind) {
