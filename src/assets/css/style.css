@@ -82,7 +82,7 @@
     border-color: #fff
 }
 
-.con .sou form img{
+.con .sou form img {
     width: 35px;
     height: 36px;
     display: block;
@@ -155,6 +155,7 @@
     text-align: center;
 }
 
+
 #menu {
     width: 50px;
     height: 50px;
@@ -162,7 +163,7 @@
     position: absolute;
     right: 10px;
     top: 5px;
-    z-index: 5;
+    z-index: 2000000;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -174,7 +175,7 @@
     margin: 24px auto;
     width: 30px;
     height: 2px;
-    background: #777;
+    background: #fff;
 }
 
 #menu i:before {
@@ -182,7 +183,7 @@
     width: 20px;
     height: 2px;
     top: -8px;
-    background: #777;
+    background: #fff;
     position: absolute;
     right: 0;
 }
@@ -192,7 +193,7 @@
     width: 20px;
     height: 2px;
     bottom: -8px;
-    background: #777;
+    background: #fff;
     position: absolute;
     left: 0;
 }
@@ -331,7 +332,6 @@
     /*.con .sou form img {*/
     /*    border-radius: 25px;*/
     /*}*/
-
     .con .sou #word {
         max-height: 150px;
     }
@@ -347,10 +347,12 @@
     .list ul {
         width: 220px;
     }
+
     .list ul li {
         width: 80px;
 
     }
+
     .con .sou ul li {
         width: 100px;
         font-size: 12px;
@@ -370,25 +372,8 @@
     .mywth.hidden {
         display: none;
     }
-    .hindColor{
-        display: none;
-    }
-}
 
-@media (max-height: 420px) {
-    .con {
-        margin: 0;
-        top: 0px;
-    }
-
-    .con .shlogo {
-        display: none;
-    }
-
-    .home,
-    #menu,
-    .mywth,
-    .foot {
+    .hindColor {
         display: none;
     }
 }

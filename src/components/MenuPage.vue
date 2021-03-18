@@ -2,15 +2,16 @@
   <div>
     <div class="login_bar">
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
-      <img src="https://static.apkdv.com/image/refresh.webp" alt="切换背景" class="login" @click="refreshBg">
-      <img v-show="showEditBar" class="login" :src="imagePin" alt="禁止自动切换背景" @click="disAbleChanged"/>
+      <img v-show="showEditBar" src="https://static.apkdv.com/image/refresh.webp" alt="切换背景" class="login"
+           @click="refreshBg">
+      <img class="login" :src="imagePin" alt="禁止自动切换背景" @click="disAbleChanged"/>
       <span :class="{'hindColor':showDes}" @mouseleave="hind" @mouseenter="showText">{{ imageDes }}</span>
     </div>
 
-    <div id="menu" :class="{'on':hover}" @click="openOrClose" @mouseover="hover = true"><i></i></div>
+    <div id="menu" :class="{'on':hover}" @click="openOrClose"><i></i></div>
     <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} ">
       <div class="actionBar" v-show="showEditBar" :class="{affixBg:top>20}">
-        <img class="modify editSize" v-show="showEditBar" :src="editImage" @click="modify" alt="自定义模式"/>
+        <img class="modify editSize" :src="editImage" @click="modify" alt="自定义模式"/>
       </div>
 
       <ul v-for="(category,ind) in originalList" :key="ind">
@@ -91,6 +92,7 @@ export default {
     // })
     this.lockImage = localStorage.getItem("lockImage")
     this.imageDes = localStorage.getItem("des")
+    this.hover = localStorage.getItem("ding") === "1"
   },
   data() {
     return {
@@ -120,6 +122,7 @@ export default {
   }, methods: {
     openOrClose() {
       this.hover = !this.hover
+      localStorage.setItem("ding", this.hover ? "1" : "0")
     },
     getScroll() {
       this.top = this.$refs.container.scrollTop
@@ -144,7 +147,7 @@ export default {
     }, accessToLocalData() {
       axios.create({
         baseURL: ""
-      }).get("/json/userweb.json").then(res => {
+      }).get("https://static.apkdv.com/start/json/userweb.json").then(res => {
         this.makeData(res.data)
       })
     }, handleTouchStart(index, ind) {
@@ -334,19 +337,12 @@ img {
   flex-direction: row;
 
   .modify {
-    margin-top: 13px;
+    margin-top: 8px;
     cursor: pointer;
-  }
-
-  .dingSize {
     height: 25px;
     width: 25px;
   }
 
-  .editSize {
-    height: 30px;
-    width: 30px;
-  }
 }
 
 #customize-mode-tips {
@@ -415,8 +411,8 @@ img {
   flex-direction: row;
 
   .login {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
   }
 
@@ -440,5 +436,12 @@ img {
 .affixBg {
   background: #1D3B55;
   z-index: 500;
+}
+@media (max-width: 640px) {
+  .login_bar{
+    span{
+      display: none;
+    }
+  }
 }
 </style>
