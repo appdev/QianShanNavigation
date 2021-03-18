@@ -47,6 +47,7 @@ func AddCategory(c *gin.Context) {
 		return
 	}
 	webSite := model.WebSite{Url: addWeb.Url, UserID: userId, Name: addWeb.Name, Category: addWeb.Category}
+	webSite.Favicon = util.Fetch(addWeb.Url)
 	id, err := webSite.Insert()
 	if err != nil {
 		middleware.ResponseError(c, -1, errors.New("添加失败"))
