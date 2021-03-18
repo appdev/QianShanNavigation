@@ -53,12 +53,14 @@ export default {
     setBg(urlPah, data) {
       document.querySelector('body')
           .setAttribute('style', 'background:url("' + urlPah + '") no-repeat center/cover; ')
-      document.querySelector('span').innerText = data;
+      if (data) {
+        document.querySelector('span').innerText = data;
+      }
     }, loadEmptyImage() {
       let url = localStorage.getItem("image")
       let des = localStorage.getItem("des")
       if (url === '') {
-        url = "https://cn.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
+        url = "https://images.unsplash.com/photo-1615594793621-bdd4c64811a4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixlib=rb-1.2.1&q=80&w=1920"
       }
       this.setBg(url, des)
     },
