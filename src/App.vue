@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MenuPage/>
     <SearchPage/>
+    <MenuPage/>
   </div>
 </template>
 
@@ -26,6 +26,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  height: 100%;
+  overflow: scroll;
+  flex-direction: column;
 }
 
 * {
@@ -83,12 +87,12 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #222d46;
+  background: #2935509c;
   border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #293550;
+  background: #2935509c;
   border-radius: 0px;
 }
 
@@ -97,9 +101,8 @@ a {
 }
 
 ::-webkit-scrollbar-corner {
-  background: #222d46;
+  background: #293550;
 }
-
 /*body {*/
 /*  background: url("https://cn.bing.com//th?id=OHR.HuntsMesa_JA-JP3140979616_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp") no-repeat center/cover;*/
 /*}*/

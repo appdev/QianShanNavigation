@@ -2,45 +2,42 @@
   <div>
     <div class="login_bar">
       <img :src="loginImage" class="login" alt="退出登录" @click="addNew('login','','')">
-      <img v-show="showEditBar" src="https://static.apkdv.com/image/refresh.webp" alt="切换背景" class="login"
+      <img v-show="showEditBar" :src="refreshImage" alt="切换背景" class="login"
            @click="refreshBg">
       <img class="login" :src="imagePin" alt="禁止自动切换背景" @click="disAbleChanged"/>
+      <img class="login" v-show="showEditBar" :src="editImage" @click="modify" alt="自定义模式"/>
       <span :class="{'hindColor':showDes}" @mouseleave="hind" @mouseenter="showText">{{ imageDes }}</span>
     </div>
 
-    <div id="menu" :class="{'on':hover}" @click="openOrClose"><i></i></div>
-    <div class="list" @scroll.passive="getScroll()" ref="container" :class="{'closed':!hover&&!lock&&!editMode} ">
-      <div class="actionBar" v-show="showEditBar" :class="{affixBg:top>20}">
-        <img class="modify editSize" :src="editImage" @click="modify" alt="自定义模式"/>
-      </div>
+    <div class="list" ref="container">
 
-      <ul v-for="(category,ind) in originalList" :key="ind">
+      <ul class="web_item" ref="webItem" v-for="(category,ind) in originalList" :key="ind">
         <!------>
         <li class="title" :class="{'editModeClass':editMode}" @click="addNew('modifyClassification',category[0])">
           {{ category[0] }}
         </li>
-        <li class="edit-website" v-for="(item,index) in category[1]" @click.stop="handleTouchStart(index,ind,item)"
-            :key="index" @mouseleave="leave()"
-            @mouseenter="enter(index,ind)">
-          <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
-             target="_blank">
-            <img :src="item.favicon"
-                 onerror="javascript:this.src='https://static.apkdv.com/image/web.png!/format/webp/lossless/true';"/>
-            {{ item.name }}
-            <!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
-          </a>
-          <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
-            <a class="edit_text" @click="addNew('modifySite',category[0],item)" href="#">编辑</a>
-            <a class="delete_text" @click="showConfirm(item)" href="#">删除</a>
-          </div>
+          <li class="edit-website" v-for="(item,index) in category[1]" @click.stop="handleTouchStart(index,ind,item)"
+              :key="index" @mouseleave="leave()"
+              @mouseenter="enter(index,ind)">
+            <a v-show="!(showEditItem===index && showEditCategory === ind)" rel="nofollow" :href="item['url']"
+               target="_blank">
+              <img :src="item.favicon"
+                   onerror="javascript:this.src='https://static.apkdv.com/image/web.png!/format/webp/lossless/true';"/>
+              {{ item.name }}
+              <!--                :src="'https://www.google.com/s2/favicons?domain='+item.url"/>-->
+            </a>
+            <div v-show="showEditItem===index && showEditCategory === ind" class="editBox">
+              <a class="edit_text" @click="addNew('modifySite',category[0],item)" href="#">编辑</a>
+              <a class="delete_text" @click="showConfirm(item)" href="#">删除</a>
+            </div>
 
-        </li>
-        <li v-show="editMode" @click="addNew('addSite',category[0])"><a href="#" title="添加新站点">
-          <img src="https://static.apkdv.com/image/add.svg"/>
-          添加站点</a>
-        </li>
+          </li>
+          <li v-show="editMode" @click="addNew('addSite',category[0])"><a href="#" title="添加新站点">
+            <img src="https://static.apkdv.com/image/add.svg"/>
+            添加站点</a>
+          </li>
         <!------>
-      </ul>
+        </ul>
       <ul v-show="editMode">
         <!------>
         <li class="addNew" @click="addNew('addClassification')"><a href="#" title="添加新分类">
@@ -69,7 +66,7 @@ import AddNew from "@/components/AddWebDialog"
 import {event, getCookie, setCookie, showSuccess, showWarning} from "@/utils";
 import {deleteItem, getUserWebList} from "@/api/config";
 import axios from "axios";
-import {disEdit, edit, login, logout, pin, pinUp} from "@/utils/image";
+import {disEdit, edit, login, logout, pin, pinUp,refresh} from "@/utils/image";
 
 export default {
 
@@ -108,6 +105,7 @@ export default {
       pinImage: pin,
       imagePin: pin,
       editImage: disEdit,
+      refreshImage: refresh,
       addNewType: "",
       showEditItem: -1,
       showEditCategory: -1,
@@ -123,9 +121,6 @@ export default {
     openOrClose() {
       this.hover = !this.hover
       localStorage.setItem("ding", this.hover ? "1" : "0")
-    },
-    getScroll() {
-      this.top = this.$refs.container.scrollTop
     }, disAbleChanged() {
       this.lockImage = !this.lockImage
       this.imagePin = this.lockImage ? pinUp : pin
@@ -147,7 +142,7 @@ export default {
     }, accessToLocalData() {
       axios.create({
         baseURL: ""
-      }).get("/start/json/userweb.json").then(res => {
+      }).get("/static/userweb.json").then(res => {
         this.makeData(res.data)
       })
     }, handleTouchStart(index, ind) {
@@ -437,9 +432,10 @@ img {
   background: #1D3B55;
   z-index: 500;
 }
+
 @media (max-width: 640px) {
-  .login_bar{
-    span{
+  .login_bar {
+    span {
       display: none;
     }
   }

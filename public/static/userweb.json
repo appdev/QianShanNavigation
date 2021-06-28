@@ -1,0 +1,361 @@
+[{
+  "url": "https://www.youtube.com/",
+  "category": "视频媒体",
+  "name": "Youtube",
+  "favicon": "https://www.youtube.com/s/desktop/e9152424/img/favicon.ico"
+}, {
+  "url": "https:/q.com/",
+  "category": "视频媒体",
+  "name": "腾讯视频",
+  "favicon": "https://v.qq.com/favicon.ico"
+}, {
+  "url": "https://www.youku.com/",
+  "category": "视频媒体",
+  "name": "优酷",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://www.iqiyi.com/",
+  "category": "视频媒体",
+  "name": "爱奇艺",
+  "favicon": "https://www.iqiyipic.com/common/fix/128-128-logo.png"
+}, {
+  "url": "http://www.acfun.cn/index.html",
+  "category": "视频媒体",
+  "name": "ACFUN",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://www.bilibili.com/",
+  "category": "视频媒体",
+  "name": "哔哩哔哩",
+  "favicon": "https://static.hdslb.com/images/favicon.ico"
+}, {
+  "url": "https://www.nfmovies.com/",
+  "category": "视频媒体",
+  "name": "奈非影视",
+  "favicon": "https://www.nfmovies.com/favicon.ico"
+}, {
+  "url": "https://www.yunbtv.com/",
+  "category": "视频媒体",
+  "name": "云播TV",
+  "favicon": "https://www.yunbtv.com/template/yunbtv_ui/images/favicon.ico"
+}, {
+  "url": "https://mail.google.com/mail/u/0/#inbox",
+  "category": "邮箱",
+  "name": "Gmail",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://outlook.live.com/mail/",
+  "category": "邮箱",
+  "name": "Hotmail",
+  "favicon": "https://outlook.live.com/mail/favicon.ico"
+}, {
+  "url": "https://mail.163.com/",
+  "category": "邮箱",
+  "name": "网易邮箱",
+  "favicon": "https://mail.163.com/favicon.ico"
+}, {
+  "url": "https://mail.sina.com.cn/",
+  "category": "邮箱",
+  "name": "新浪邮箱",
+  "favicon": "https://www.weibo.com/favicon.ico"
+}, {
+  "url": "https://mail.qq.com/",
+  "category": "邮箱",
+  "name": "QQ邮箱",
+  "favicon": "https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_16h.png"
+}, {
+  "url": "https://qiye.aliyun.com/",
+  "category": "邮箱",
+  "name": "阿里邮箱",
+  "favicon": "https://qiye.aliyun.com/static/6152085/images/favicon.ico"
+}, {
+  "url": "https://www.weibo.com",
+  "category": "社交资讯",
+  "name": "微博",
+  "favicon": "https://www.weibo.com/favicon.ico"
+}, {
+  "url": "https://www.zhihu.com/",
+  "category": "社交资讯",
+  "name": "知乎",
+  "favicon": "https://static.zhihu.com/heifetz/favicon.ico"
+}, {
+  "url": "https://www.douban.com/",
+  "category": "社交资讯",
+  "name": "豆瓣",
+  "favicon": "https://img3.doubanio.com/favicon.ico"
+}, {
+  "url": "https://www.jianshu.com/",
+  "category": "社交资讯",
+  "name": "简书",
+  "favicon": "https://cdn2.jianshu.io/assets/favicons/favicon-e743bfb1821442341c3ab15bdbe804f7ad97676bd07a770ccc9483473aa76f06.ico"
+}, {
+  "url": "https://www.v2ex.com/",
+  "category": "社交资讯",
+  "name": "V2EX",
+  "favicon": "https://www.v2ex.com/static/icon-192.png"
+}, {
+  "url": "https://www.instagram.com",
+  "category": "社交资讯",
+  "name": "Instagram",
+  "favicon": "https://www.v2ex.com/static/icon-192.png"
+}, {
+  "url": "https://www.twitter.com",
+  "category": "社交资讯",
+  "name": "Twitter",
+  "favicon": "https://abs.twimg.com/favicons/twitter.ico"
+}, {
+  "url": "https://www.facebook.com",
+  "category": "社交资讯",
+  "name": "Facebook",
+  "favicon": "https://static.xx.fbcdn.net/rsrc.php/yz/r/KFyVIAWzntM.ico"
+}, {
+  "url": "https://www.taobao.com",
+  "category": "购物",
+  "name": "淘宝网",
+  "favicon": "https://img.alicdn.com/tps/i3/T1OjaVFl4dXXa.JOZB-114-114.png"
+}, {
+  "url": "https://dyartstyle.com/juhuasuan/",
+  "category": "购物",
+  "name": "聚划算",
+  "favicon": "https://cdn.jsdelivr.net/gh/5iux/uploads/pic/20200818144752.gif"
+}, {
+  "url": "https://dyare.com/temai/",
+  "category": "购物",
+  "name": "淘宝特卖",
+  "favicon": "https://img.alicdn.com/tps/i3/T1OjaVFl4dXXa.JOZB-114-114.png"
+}, {
+  "url": "https://mobile.yangkeduo.com/duo_cl.html?pid=8742514_71211367\u0026cpsSign=CM_190605_8742514_71211367_92fdd9f7fb637fec599bf556f263ed1f\u0026duoduo_type=2\u0026launch_wx=1",
+  "category": "购物",
+  "name": "拼多多",
+  "favicon": "https://mms-static.pinduoduo.com/jubao/favicon.ico"
+}, {
+  "url": "https://www.jd.com",
+  "category": "购物",
+  "name": "京东",
+  "favicon": "https://www.jd.com/favicon.ico"
+}, {
+  "url": "https://www.suning.com/",
+  "category": "购物",
+  "name": "苏宁易购",
+  "favicon": "https://www.suning.com/favicon.ico"
+}, {
+  "url": "http://you.163.com/",
+  "category": "购物",
+  "name": "网易严选",
+  "favicon": "http://you.163.com/favicon.ico?r=newgold"
+}, {
+  "url": "https://www.amazon.cn/",
+  "category": "购物",
+  "name": "亚马逊",
+  "favicon": "https://static.apkdv.com/web.prmat/webp/lossless/true"
+}, {
+  "url": "http://www.dangdang.com/",
+  "category": "购物",
+  "name": "当当",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://wat.dyartstyle.com/",
+  "category": "购物",
+  "name": "吾爱淘",
+  "favicon": "https://cdn.jsdelivr.net/gh/5iux/uploads/pic/20200818144752.gif"
+}, {
+  "idurl": "https://hao.5iux.cn/",
+  "category": "设计视觉",
+  "name": "设计导航",
+  "favicon": "https://cdn.jsdelivr.net/gh/5iux/uploads/pic/20201009115950.png"
+}, {
+  "url": "https://www.pinter",
+  "category": "设计视觉",
+  "name": "Pinterest",
+  "favicon": "https://s.pinimg.com/webapp/favicon-54a5b2af.png"
+}, {
+  "url": "https://www.behance.net/",
+  "category": "设计视觉",
+  "name": "Befavicon",
+  "favicon": "https://a5.behance.net/88a038ae0ddce49bfa4b46ef38299f94f52d88ca/img/site/favicon.ico?cb=264615658"
+}, {
+  "url": "https://www.dribbble.com/",
+  "category": "设计视觉",
+  "name": "namDribbble",
+  "favicon": "https://cdn.dribbble.com/assets/favicon-b38525134603b9513174ec887944bde1a869eb6cd414f4d640ee48ab2a15a26b.ico"
+}, {
+  "url": "https://huaban.com/",
+  "category": "设计视觉",
+  "name": "花瓣",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://www.zcool.com.cn/",
+  "category": "设计视觉",
+  "name": "站酷",
+  "favicon": "https://static.zcool.cn/git_z/z/site/favicon.ico?version=1615960471078"
+}, {
+  "url": "https://www.iconfont.cn/",
+  "category": "设计视觉",
+  "name": "阿里图标",
+  "favicon": "https://img.alicdn.com/imgextra/i4/O1CN01EYTRnJ297D6vehehJ_!!6000000008020-55-tps-64-64.svg"
+}, {
+  "url": "https://www.iconfinder.com/",
+  "category": "设计视觉",
+  "name": "IconFinder",
+  "favicon": "https://www.iconfinder.com/static/img/favicons/favicon-194x194.png?bf2736d2f8"
+}, {
+  "url": "https://uiiiuiii.com/",
+  "category": "设计视觉",
+  "name": "优设教程",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/losue"
+}, {
+  "url": "https://www.google.com/",
+  "category": "搜索引擎",
+  "name": "Google",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://duckduckgo.com/",
+  "category": "搜索引擎",
+  "name": "DuckGo",
+  "favicon": "https://duckduckgo.com/favicon.ico"
+}, {
+  "url": "https://www.bing.com/",
+  "category": "搜索引擎",
+  "name": "Bing",
+  "favicon": "https://www.bing.com/sa/simg/favicon-2x.ico"
+}, {
+  "url": "https://www.baidu.com",
+  "category": "搜索引擎",
+  "name": "百度",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://hk.yahoo.com/",
+  "category": "搜索引擎",
+  "name": "雅虎",
+  "favicon": "https://s.yimg.comiv2/default/icons/favicon_y19_32x32_custom.svg"
+}, {
+  "url": "https://www.sogou.com/",
+  "category": "搜索引擎",
+  "name": "搜狗",
+  "favicon": "https://www.sogou.com/images/logo/new/favic?v=4"
+}, {
+  "url": "https://www.naver.com/",
+  "category": "搜索引擎",
+  "name": "NAVER",
+  "favicon": "https://www.naver.com/favicon.ico?1"
+}, {
+  "url": "https://sou.com/",
+  "category": "搜索引擎",
+  "name": "秘迹",
+  "favicon": "https://mijisou.com/themes/entropage/img/favicon.png?staticVersion=1557735741"
+}, {
+  "url": "https://www.dogedoge.com/",
+  "category": "搜索引擎",
+  "name": "多吉",
+  "favicon": "https://www.dogedoge.com/assets/doge_ico.png"
+}, {
+  "url": "https://seeres.com/",
+  "category": "搜索引擎",
+  "name": "seeres",
+  "favicon": "http.apkdv.com/start/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://tools.miku.ac/",
+  "category": "工具",
+  "name": "Miku工具",
+  "favicon": "https://tools.miku.ac/favicon.ico"
+}, {
+  "url": "https://g.5iux.cn/ip/",
+  "category": "工具",
+  "name": "IP查询",
+  "favicon": "https://g.5iux.cn/logo.png"
+}, {
+  "url": "https://translate.google.cn/",
+  "category": "工具",
+  "name": "谷歌翻译",
+  "favicon": "https://ssl.gstatic.com/translate/favicon.ico"
+}, {
+  "url": "http://www.slimego.cn/",
+  "category": "工具",
+  "name": "史莱姆",
+  "favicon": "http://www.slimego.cn/images/favicon.ico"
+}, {
+  "url": "https://feedly.com",
+  "category": "工具",
+  "name": "Feedly",
+  "favicon": "https://feedly.com/favicon.ico"
+}, {
+  "url": "https://pan.baidu.com",
+  "category": "工具",
+  "name": "百度网盘",
+  "favicon": "https://pan.baidu.com/static/images/favicon.ico"
+}, {
+  "url": "http://coolaf.com/tool/md",
+  "category": "工具",
+  "name": "MD编辑器",
+  "favicon": "http://coolaf.com/static/img/favicon.ico"
+}, {
+  "url": "http://cubic-bezier.com",
+  "category": "工具",
+  "name": "贝赛尔曲线",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://javascriptobfuscator.com/Javascript-Obfuscator.aspx",
+  "category": "工具",
+  "name": "JS混淆器",
+  "favicon": "https://javascriptobfuscator.com/lock.ico"
+},  {
+  "url": "https://ping.chinaz.com/",
+  "category": "工具",
+  "name": "站长Ping",
+  "favicon": "https://csstools.chinaz.com/favicon.ico"
+}, {
+  "url": "https://apkdl.in/",
+  "category": "工具",
+  "name": "APK下载",
+  "favicon": "https://static.apkdv.com/starpng!/format/webp/lossless/true"
+}, {
+  "url": "http://www.w3school.com.cn/",
+  "category": "开发",
+  "name": "W3school",
+  "favicon": "http://www.w3school.com.cn/ui2019/logo-16-red.png"
+}, {
+  "url": "https://github.com/",
+  "category": "开发",
+  "name": "Github",
+  "favicon": "https://github.githubassets.com/favicons/favicon.svg"
+}, {
+  "url": "https://codepen.io/",
+  "category": "开发",
+  "name": "Codepen",
+  "favicon": "https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico"
+}, {
+  "url": "https://www.52pojie.cn/",
+  "category": "开发",
+  "name": "吾爱破解",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://segmentfault.com/",
+  "category": "开发",
+  "name": "SF思否",
+  "favicon": "https://cdn.segmentfault.com/v-5feb05cf/global/img/favicon.ico"
+}, {
+  "url": "https://cdnjs.com/",
+  "category": "开发",
+  "name": "CdnJs",
+  "favicon": "https://cdnjs.com/favicon.png"
+}, {
+  "url": "https://fontawesome.com/icons?d=gallery\u0026m=free",
+  "category": "开发",
+  "name": "FontA.",
+  "favicon": "https://fontawesome.com/images/favicons/apple-icon-60x60.png"
+}, {
+  "url": "https://msdn.itellyou.cn/",
+  "category": "开发",
+  "name": "MSDN下载",
+  "favicon": "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+}, {
+  "url": "https://dash.cloudflare.com/",
+  "category": "开发",
+  "name": "C.flare",
+  "favicon": "https://dash.cloudflare.com/apple-touch-icon-72x72.png"
+}, {
+  "url": "https://www.swiper.com.cn/",
+  "category": "开发",
+  "name": "Swiper",
+  "favicon": "https://www.swiper.com.cn/templets/default/images/logo.png"
+}]

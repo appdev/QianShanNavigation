@@ -22,7 +22,7 @@
         />
       </a-form-item>
       <!--        分类选择-->
-      <a-form-item v-show="showWebInput" label="分类名称">
+      <a-form-item v-show="showWebInput && !showCategory" label="分类名称">
         <a-select :default-value="this.name" @change="handleChange">
           <a-select-option v-for="(category,ind) in categoryArray" :key="ind">{{ category }}</a-select-option>
         </a-select>
@@ -36,10 +36,10 @@
         />
       </a-form-item>
       <a-form-item v-show="showWebInput" label="站点地址">
-        <a-input :onValuesChange="changedValue"
-                 v-decorator="['address', { rules: [{ required: showWebInput, message: '请输入站点地址' }],
+        <a-input
+            v-decorator="['address', { rules: [{ required: showWebInput, message: '请输入站点地址' }],
              initialValue:this.webObj != null ? this.webObj.url : ''}]"
-                 placeholder="站点地址"
+            placeholder="站点地址"
         />
       </a-form-item>
       <a-form-item v-show="false">
@@ -140,7 +140,6 @@ export default {
     dialogClose(success) {
       this.showStatus = false
       this.$emit('addWebDialogClose', false, success)//子组件对openStatus修改后向父组件发送事件通知
-    }, changedValue(e) {
     }, handleChange(value) {
       this.webObj.category = this.categoryArray[value]
     },

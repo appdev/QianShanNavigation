@@ -1,16 +1,12 @@
 
 #content {
     width: 100%;
-    height: 100%;
 }
 
 .con {
     width: 100%;
     transition: 1s all;
-    margin: auto;
     min-width: 320px;
-    height: 380px;
-    position: absolute;
     left: 0;
     top: -100px;
     right: 0;
@@ -23,6 +19,7 @@
     height: 128px;
     margin: 20px auto;
     background-size: contain;
+    opacity: 0.5;
     background: url(https://static.apkdv.com/image/icon.svg) no-repeat center;
 }
 
@@ -156,101 +153,27 @@
 }
 
 
-#menu {
-    width: 50px;
-    height: 50px;
-    transform: scale(0.8);
-    position: absolute;
-    right: 10px;
-    top: 5px;
-    z-index: 2000000;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-#menu i {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 24px auto;
-    width: 30px;
-    height: 2px;
-    background: #fff;
-}
-
-#menu i:before {
-    content: '';
-    width: 20px;
-    height: 2px;
-    top: -8px;
-    background: #fff;
-    position: absolute;
-    right: 0;
-}
-
-#menu i:after {
-    content: '';
-    width: 20px;
-    height: 2px;
-    bottom: -8px;
-    background: #fff;
-    position: absolute;
-    left: 0;
-}
-
-#menu.on {
-    right: 380px;
-    background: #29f;
-    border-radius: 25px;
-    box-shadow: 0 6px 8px rgba(36, 159, 253, .3);
-}
-
-#menu.on i {
-    width: 20px;
-    background: #fff;
-}
-
-#menu.on i:before {
-    top: -5px;
-    transform: rotate(45deg);
-    width: 14px;
-    right: -1px;
-    left: auto;
-    background: #fff;
-}
-
-#menu.on i:after {
-    bottom: -5px;
-    transform: rotate(-45deg);
-    width: 14px;
-    right: -1px;
-    left: auto;
-    background: #fff;
-}
-
 .list {
-    width: 370px;
-    height: 100%;
-    overflow: hidden;
-    overflow-y: auto;
-    position: absolute;
-    padding-bottom: 20px;
-    right: 0px;
-    top: 0px;
+    width: 80%;
     z-index: 20;
-    background: rgb(41 53 80 / 0.6);
     transition: 0.3s all linear;
+    display: grid;
+    margin: auto auto 160px auto !important;
+    grid-template-columns: repeat(3, 25%);
+    grid-column-gap: 5%;
 }
 
-
-.list.closed {
-    right: -380px;
-}
-
-.list ul {
+.web_item {
     width: 100%;
-    float: left;
-    padding-left: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+    list-style: none;
+}
+
+.web_item:last-child {
+
 }
 
 .list ul li {
@@ -260,6 +183,8 @@
     height: 30px;
     text-align: left;
     line-height: 35px;
+    list-style: none;
+    flex-grow: 1;
 }
 
 .list ul li a {
@@ -270,7 +195,7 @@
     display: block;
     color: #fff;
     font-weight: 500;
-    background: #293550;
+    background: #2935509c;
     text-align: left;
     font-size: 12px;
     overflow: hidden;
@@ -285,13 +210,13 @@
     box-shadow: 0 3px 3px rgba(0, 40, 70, .3);
 }
 
-.list ul li.title {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    margin: 40px 0 0;
-    text-align: left;
-    text-indent: 10px;
+.title {
+    width: 100% !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    margin: 40px 0 0 !important;
+    text-align: left !important;
+    text-indent: 10px !important;
     /*border-bottom: 1px dashed #dedede;*/
     color: #fff;
     font-size: 18px;
@@ -311,6 +236,70 @@
     height: 22px;
 }
 
+@media (min-width: 1650px) {
+    .list {
+        width: 90%;
+        z-index: 20;
+        transition: 0.3s all linear;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(4, 23%);
+        grid-column-gap: 3%;
+    }
+
+    .title {
+        width: 100% !important;
+        margin: 20px 0 0 !important;
+        text-align: left !important;
+        text-indent: 10px !important;
+        /*border-bottom: 1px dashed #dedede;*/
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+}
+
+@media (max-width: 1650px) {
+    .list {
+        width: 90%;
+        z-index: 20;
+        transition: 0.3s all linear;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(3, 26%);
+        grid-column-gap: 5%;
+    }
+
+    .title {
+        margin: 20px 0 0 !important;
+    }
+}
+
+@media (max-width: 1415px) {
+    .list {
+        grid-template-columns: repeat(3, 27%);
+        grid-column-gap: 2%;
+    }
+}
+
+@media (max-width: 1365px) {
+    .list {
+        width: 100%;
+        grid-template-columns: repeat(2, 35%);
+        grid-column-gap: 5%;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .list {
+        width: 100%;
+        display: flex;
+        margin: auto auto 160px auto !important;
+        flex-direction: column;
+    }
+}
 
 @media (max-width: 640px) {
     .con {
@@ -336,25 +325,25 @@
         max-height: 150px;
     }
 
-    #menu.on {
-        right: 270px;
-    }
-
     .list {
-        width: 227px;
+        width: 85%;
+        display: flex;
+        margin: auto auto 160px auto !important;
+        flex-direction: column;
     }
 
-    .list ul {
-        width: 220px;
+    .title {
+        width: 100% !important;
+        text-align: left !important;
+        text-indent: 10px !important;
+        /*border-bottom: 1px dashed #dedede;*/
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
     }
 
-    .list ul li {
-        width: 80px;
-
-    }
 
     .con .sou ul li {
-        width: 100px;
         font-size: 12px;
         text-indent: 30px;
     }
@@ -388,44 +377,21 @@
     }
 
     .con .sou form .wd:focus {
-        background: #293550;
+        background: #2935509c;
         border: 1px solid #162035;
     }
 
     .con .sou form .wd {
-        border: 1px solid #293550;
+        border: 1px solid #2935509c;
         color: #bbb;
     }
 
     .con .sou #word {
-        border: 15px solid #293550;
-        background: #293550;
+        border: 15px solid #2935509c;
+        background: #2935509c;
     }
 
     .con .sou #word .click_work {
         color: #89b;
     }
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #222d46;
-    border-radius: 0px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #293550;
-    border-radius: 0px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #293550;
-}
-
-::-webkit-scrollbar-corner {
-    background: #222d46;
 }
