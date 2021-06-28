@@ -7,10 +7,8 @@
     width: 100%;
     transition: 1s all;
     min-width: 320px;
-    left: 0;
-    top: -100px;
-    right: 0;
-    bottom: 0;
+    margin-top: 60px;
+    overflow: hidden;
 }
 
 .con .shlogo {
