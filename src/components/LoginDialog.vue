@@ -59,7 +59,7 @@
 </template>
 <script>
 import {login} from "@/api/config";
-import {getCookie, setCookie, showSuccess, showWarning} from "@/utils";
+import {getCookie, setCookie, showLoading, showSuccess, showWarning} from "@/utils";
 import axios from "axios";
 
 function hasErrors(fieldsError) {
@@ -108,6 +108,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           let rember = values.remember
+          showLoading()
           let params = {
             "username": values.userName,
             "password": values.password,

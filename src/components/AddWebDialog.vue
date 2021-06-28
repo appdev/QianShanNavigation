@@ -87,7 +87,7 @@
 </template>
 <script>
 import {addweb, update, updateCategory} from "@/api/config";
-import {showSuccess, showWarning} from "@/utils";
+import {showLoading, showSuccess, showWarning} from "@/utils";
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -179,6 +179,7 @@ export default {
     },
     // 修改站点
     modifySite(inputValues) {
+      showLoading()
       let params = {
         "id": this.webObj.id,
         "name": inputValues.name,
@@ -198,6 +199,7 @@ export default {
     },
     // 修改分类名字
     modifyClassification(inputValues) {
+      showLoading()
       let params = {
         "oldCategory": this.name,
         "newCategory": inputValues.category,
@@ -213,6 +215,7 @@ export default {
         showWarning("服务器访问异常，请检查网络")
       })
     }, addClassification(inputValues) {
+      showLoading()
       let params = {
         "name": inputValues.name,
         "url": inputValues.address,
@@ -221,6 +224,7 @@ export default {
       }
       this.addNewWeb(params)
     }, addSite(inputValues) {
+      showLoading()
       let params = {
         "name": inputValues.name,
         "url": inputValues.address,
@@ -229,6 +233,7 @@ export default {
       }
       this.addNewWeb(params)
     }, addNewWeb(params) {
+      showLoading()
       addweb(params).then(res => {
         if (res.code === 200) {
           showSuccess("添加成功")

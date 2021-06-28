@@ -11,21 +11,15 @@
     overflow: hidden;
 }
 
-.con .shlogo {
+.shlogo {
     position: relative;
-    width: 250px;
-    height: 128px;
-    margin: 20px auto;
-    background-size: contain;
-    opacity: 0.5;
-    background: url(https://static.apkdv.com/image/icon.svg) no-repeat center;
+    margin: auto auto;
+    /*background: url(https://static.apkdv.com/image/icon.svg) no-repeat center;*/
 }
 
-.con .shlogo a {
-    width: 100%;
-    display: block;
-    width: 100%;
-    height: 100%;
+.shlogo div{
+    margin: 0 auto;
+    align-self: center;
 }
 
 .con .sou {

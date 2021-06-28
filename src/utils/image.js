@@ -9,6 +9,7 @@ export const googleLogo = "https://static.apkdv.com/image/g.svg"
 export const baiduLogo = "https://static.apkdv.com/image/baidu.svg"
 
 export const refresh = "https://static.apkdv.com/image/refresh.svg"
+export const animationData = "https://static.apkdv.com/image/sun.json"
 
 
 // export const login = "../assets/img/login.webp"

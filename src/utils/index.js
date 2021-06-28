@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import {message} from "ant-design-vue";
 
 export var event = new Vue();
-
+const key = 'modify';
 /**
  * @msg: 从cookie获取数据
  * @param {string} key
@@ -33,12 +33,15 @@ export const removeCookie = (key) => {
 export const setCookie = (key, value) => {
     Cookies.set(key, value, {expires: 365})
 }
-
+export const showLoading = () => {
+    message.loading({content: '加载中...', key});
+}
 export const showWarning = (val) => {
-    message.warning(val);
+    message.warning({content: val, key, duration: 1});
 }
 export const showSuccess = (val) => {
-    message.success(val);
+    // message.success({ content: 'Loaded!', key, duration: 2 });
+    message.success({content: val, key, duration: 1});
 }
 
 export const getTime = function () {

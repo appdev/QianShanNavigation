@@ -1,7 +1,7 @@
 <template>
   <div id="content" @click="hideSuggestion">
     <div class="con">
-      <div class="shlogo"></div>
+      <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
       <div class="sou">
         <form @submit.prevent="submit(q)">
           <div class="lg" @click="changed" :style="{'background': `url(${searchLogo})no-repeat center/cover`}"></div>
@@ -28,14 +28,19 @@
 </template>
 
 <script>
+import lottie from 'vue-lottie'
 import {getJsonp} from "@/api";
 import {event, getTime} from "@/utils";
 import {getImage, getNewImage} from "@/api/config";
 import {baiduLogo, googleLogo} from "@/utils/image";
+import animationData from '@/assets/sun.json';
 
 export default {
 
   name: 'searchPage',
+  components: {
+    'lottie': lottie
+  },
   data() {
     return {
       isGoogle: true,
@@ -44,12 +49,31 @@ export default {
       suggestion: [],
       showSuggestion: false,
       hasInputText: false,
-      selectSuggestion: -1
+      selectSuggestion: -1,
+      defaultOptions: {animationData: animationData,loop:false},
+      animationSpeed: 1
     }
   },
   props: {
     msg: String
   }, methods: {
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
+    stop: function () {
+      this.anim.stop();
+    },
+
+    play: function () {
+      this.anim.play();
+    },
+
+    pause: function () {
+      this.anim.pause();
+    },
+    onSpeedChange: function () {
+      this.anim.setSpeed(this.animationSpeed);
+    },
     setBg(urlPah, data) {
       document.querySelector('body')
           .setAttribute('style', 'background:url("' + urlPah + '") no-repeat center/cover; ')
