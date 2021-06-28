@@ -1,6 +1,7 @@
 <template>
   <div id="content" @click="hideSuggestion">
     <div class="con">
+<!--      <div class="shlogo"></div>-->
       <lottie :options="defaultOptions" :height="250" :width="250" v-on:animCreated="handleAnimation"/>
       <div class="sou">
         <form @submit.prevent="submit(q)">
@@ -33,7 +34,7 @@ import {getJsonp} from "@/api";
 import {event, getTime} from "@/utils";
 import {getImage, getNewImage} from "@/api/config";
 import {baiduLogo, googleLogo} from "@/utils/image";
-import animationData from '@/assets/sun.json';
+import animationData from '../../public/json/sun.json';
 
 export default {
 
@@ -50,7 +51,7 @@ export default {
       showSuggestion: false,
       hasInputText: false,
       selectSuggestion: -1,
-      defaultOptions: {animationData: animationData,loop:false},
+      defaultOptions: {animationData: animationData,loop:true},
       animationSpeed: 1
     }
   },
