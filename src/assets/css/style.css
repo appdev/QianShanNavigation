@@ -7,8 +7,6 @@
     width: 100%;
     transition: 1s all;
     min-width: 320px;
-    margin-top: 60px;
-    overflow: hidden;
 }
 
 .con .shlogo {
@@ -191,7 +189,7 @@
     display: block;
     color: #fff;
     font-weight: 500;
-    background: #2935509c;
+    background: rgb(41 53 80 / 68%);
     text-align: left;
     font-size: 12px;
     overflow: hidden;
