@@ -75,7 +75,7 @@ func FindFaviconUriInHTML(uri *url.URL, doc *goquery.Document) string {
 	base = trailingSlash.ReplaceAllString(base, "")
 
 	if iconUrl == "" {
-		return "https://static.apkdv.com/image/web.png!/format/webp/lossless/true"
+		return "https://besticon-demo.herokuapp.com/icon?url=" + base + "&size=24..32..64"
 
 	} else {
 		base = re.ReplaceAllString(base, uri.Scheme+"://")
